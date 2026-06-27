@@ -1,3 +1,8 @@
+Pre-Requists
+  - Mathematics & Statistics
+  - Programming skills
+  - Data handling
+  
 History:
   -
   -  
@@ -10,3 +15,37 @@ ML Types
   - Reinforcement
 Deep Learning
   - 
+
+Pipeline
+  - Data colletion
+  - Pre-processing
+  - Feature Engineering
+  - Model Training
+  - Evaluation
+  - Deployment
+
+Words:
+ Inputaion - fill in a reasonal estimate or remove those values
+ skewed data - which direction the cureve is going
+
+Data pre-processing
+  components:
+    Data Quality
+    Missing Data - Remove column or row based on column importance
+    Detecting Outliers - Identifying data points that are significantly different from the rest of the dataset
+          - Z-score (standar score)
+          - Interquartile Range 
+    Encoding
+    Feature Scaling
+    Splitting Data
+    
+
+  Features:
+  - Rasw Data
+  - Clean
+  - Encode
+  - Scale
+  - Split
+  - Ready for ML
+
+
