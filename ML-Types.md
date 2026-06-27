@@ -769,3 +769,159 @@ Ready for Model Training
 | Encoding | Converts categorical data into numerical format |
 | Feature Scaling | Normalizes feature values to a similar range |
 | Splitting Data | Divides data into training, validation, and test sets |
+
+
+-----
+# Skewed Data
+
+Skewed data refers to a dataset in which the values are **not evenly distributed around the mean**. Instead of forming a symmetrical (bell-shaped) distribution, the data has a **longer tail on one side**.
+
+Many machine learning algorithms assume that data follows a normal (Gaussian) distribution. Highly skewed data can affect model performance and statistical analysis.
+
+---
+
+## Types of Skewness
+
+### 1. Positive Skew (Right-Skewed)
+
+In a positively skewed distribution, the **tail extends to the right**. Most values are concentrated on the left, with a few very large values.
+
+Characteristics:
+- Mean > Median > Mode
+- Contains high-value outliers
+
+**Examples:**
+- Income distribution
+- House prices
+- Online product sales
+
+```
+Frequency
+ ^
+ |        ###
+ |      ######
+ |    #########
+ |  ##########
+ |##########
+ +------------------------> Value
+                     ------>
+                    Long Right Tail
+```
+
+---
+
+### 2. Negative Skew (Left-Skewed)
+
+In a negatively skewed distribution, the **tail extends to the left**. Most values are concentrated on the right, with a few very small values.
+
+Characteristics:
+- Mean < Median < Mode
+- Contains low-value outliers
+
+**Examples:**
+- Easy exam scores
+- Customer satisfaction ratings
+
+```
+Frequency
+ ^
+ |          ##########
+ |        ###########
+ |      ##########
+ |    #######
+ |  ###
+ +------------------------> Value
+ <------
+Long Left Tail
+```
+
+---
+
+## Why is Skewed Data a Problem?
+
+Skewed data can:
+
+- Reduce the accuracy of some machine learning models.
+- Affect statistical measures such as the mean and standard deviation.
+- Cause features with extreme values to dominate the learning process.
+- Violate assumptions of algorithms that expect normally distributed data.
+
+---
+
+## How to Handle Skewed Data
+
+Several techniques can reduce skewness:
+
+### 1. Log Transformation
+
+Useful for reducing positive skew.
+
+```
+New Value = log(x)
+```
+
+Example:
+
+| Original | Log Value |
+|----------|-----------|
+| 10 | 1.00 |
+| 100 | 2.00 |
+| 1000 | 3.00 |
+
+---
+
+### 2. Square Root Transformation
+
+Useful for moderately skewed data.
+
+```
+New Value = √x
+```
+
+---
+
+### 3. Box-Cox Transformation
+
+Applies a power transformation to make positive data more normally distributed.
+
+---
+
+### 4. Yeo-Johnson Transformation
+
+Similar to Box-Cox but works with both positive and negative values.
+
+---
+
+### 5. Remove or Treat Outliers
+
+If skewness is caused by a few extreme values, removing or capping outliers may reduce the skew.
+
+---
+
+## Example
+
+Original salaries:
+
+```
+30,000
+35,000
+40,000
+42,000
+45,000
+50,000
+500,000
+```
+
+The salary **500,000** creates a positive (right) skew because it is much larger than the other values.
+
+---
+
+## Summary
+
+| Type | Tail Direction | Relationship |
+|------|----------------|--------------|
+| Positive Skew | Right | Mean > Median > Mode |
+| Negative Skew | Left | Mean < Median < Mode |
+
+**Key Point:**  
+Skewed data is data that is **asymmetrical**, meaning one side of the distribution has a longer tail than the other. Detecting and correcting skewness can improve the performance of machine learning models and statistical analyses.
