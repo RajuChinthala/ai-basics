@@ -35,6 +35,7 @@ Data pre-processing
     Detecting Outliers - Identifying data points that are significantly different from the rest of the dataset
           - Z-score (standar score)
           - Interquartile Range 
+          - Winsorization Visualizer
     Encoding
     Feature Scaling
     Splitting Data
