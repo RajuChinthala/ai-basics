@@ -480,3 +480,115 @@ Make Predictions
 | Evaluation | Measures model performance |
 | Prediction | Uses the trained model on new data |
 
+-------------
+# Core Components of Machine Learning
+
+## 1. Representation (What is the model?)
+
+Representation defines **how the machine learning model represents the relationship between inputs and outputs**. In other words, it specifies the hypothesis space—the set of possible models the algorithm can learn.
+
+### Examples
+- Linear Regression
+- Logistic Regression
+- Decision Trees
+- Random Forest
+- Support Vector Machines (SVM)
+- Neural Networks
+
+**Example:**
+
+Predicting house prices:
+
+```
+House Size → Linear Regression → Price
+```
+
+Here, **Linear Regression** is the representation.
+
+---
+
+## 2. Evaluation (How do we measure performance?)
+
+Evaluation defines **how we determine whether a model is performing well**. It uses a loss function during training and evaluation metrics after training.
+
+### Common Evaluation Metrics
+
+### Classification
+- Accuracy
+- Precision
+- Recall
+- F1 Score
+- ROC-AUC
+
+### Regression
+- Mean Squared Error (MSE)
+- Root Mean Squared Error (RMSE)
+- Mean Absolute Error (MAE)
+- R² Score
+
+**Example:**
+
+Actual Price = $250,000
+
+Predicted Price = $240,000
+
+Error = $10,000
+
+The evaluation metric tells us how good or bad the prediction is.
+
+---
+
+## 3. Optimization (How does the model learn?)
+
+Optimization is the process of **finding the best model parameters by minimizing the loss function**.
+
+The optimizer repeatedly:
+1. Makes predictions.
+2. Calculates the loss.
+3. Updates model parameters.
+4. Repeats until the loss is minimized.
+
+### Common Optimization Algorithms
+- Gradient Descent
+- Stochastic Gradient Descent (SGD)
+- Mini-Batch Gradient Descent
+- Adam
+- RMSProp
+
+**Example:**
+
+```
+Training Data
+      │
+      ▼
+   Model
+      │
+      ▼
+ Prediction
+      │
+      ▼
+ Loss Function
+      │
+      ▼
+ Optimizer
+      │
+      ▼
+ Updated Model
+```
+
+---
+
+# Summary Table
+
+| Component | Question Answered | Examples |
+|-----------|-------------------|----------|
+| **Representation** | What kind of model will be used? | Linear Regression, Decision Tree, Neural Network |
+| **Evaluation** | How do we measure model performance? | Accuracy, F1 Score, MSE, RMSE |
+| **Optimization** | How do we improve the model? | Gradient Descent, Adam, SGD |
+
+## Easy Way to Remember
+
+- **Representation** → **What to learn?** (The model)
+- **Evaluation** → **How good is it?** (Metrics/Loss)
+- **Optimization** → **How to improve it?** (Learning algorithm)
+
