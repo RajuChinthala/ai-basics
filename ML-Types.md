@@ -592,3 +592,180 @@ Training Data
 - **Evaluation** → **How good is it?** (Metrics/Loss)
 - **Optimization** → **How to improve it?** (Learning algorithm)
 
+-------
+# Data Pre-processing
+
+Data pre-processing is the process of cleaning, transforming, and preparing raw data before training a machine learning model. High-quality data helps improve model accuracy, reduce errors, and speed up the learning process.
+
+---
+
+## Components of Data Pre-processing
+
+### 1. Data Quality
+
+Data quality refers to the condition of the dataset. A high-quality dataset should be:
+
+- Accurate
+- Complete
+- Consistent
+- Relevant
+- Free from duplicate or incorrect records
+
+Poor data quality can lead to inaccurate predictions and poor model performance.
+
+---
+
+### 2. Missing Data
+
+Missing data occurs when one or more values are absent from the dataset. Handling missing values is important because many machine learning algorithms cannot work with incomplete data.
+
+#### Common Techniques
+
+- **Remove Rows:** Delete records containing missing values when only a small number of rows are affected.
+- **Remove Columns:** Remove an entire feature if it contains too many missing values or is not important for prediction.
+- **Fill Missing Values (Imputation):** Replace missing values using the mean, median, mode, or another suitable value.
+
+**Example:**
+
+| Name | Age | Salary |
+|------|-----|--------|
+| Alice | 25 | 50000 |
+| Bob | - | 60000 |
+| Charlie | 30 | 55000 |
+
+The missing age for Bob can be replaced with the average age or the row/column can be removed depending on its importance.
+
+---
+
+### 3. Detecting Outliers
+
+Outliers are data points that differ significantly from the rest of the dataset. They may result from data entry errors, measurement errors, or rare events.
+
+Detecting outliers helps improve model accuracy and prevents unusual values from negatively affecting the learning process.
+
+#### Common Methods
+
+##### Z-Score (Standard Score)
+
+The Z-score measures how many standard deviations a data point is from the mean.
+
+- A value with a **Z-score greater than +3 or less than -3** is commonly considered an outlier.
+
+##### Interquartile Range (IQR)
+
+The IQR method identifies outliers using the spread of the middle 50% of the data.
+
+Steps:
+1. Calculate the first quartile (Q1) and third quartile (Q3).
+2. Compute the Interquartile Range:
+   ```
+   IQR = Q3 - Q1
+   ```
+3. Calculate the bounds:
+   ```
+   Lower Bound = Q1 - 1.5 × IQR
+   Upper Bound = Q3 + 1.5 × IQR
+   ```
+4. Values outside these bounds are considered outliers.
+
+---
+
+### 4. Encoding
+
+Machine learning models require numerical input. Encoding converts categorical (text) data into numerical values.
+
+#### Common Encoding Techniques
+
+- **Label Encoding:** Assigns a unique integer to each category.
+- **One-Hot Encoding:** Creates a separate binary column for each category.
+
+**Example:**
+
+| Color | Label Encoding |
+|--------|----------------|
+| Red | 0 |
+| Blue | 1 |
+| Green | 2 |
+
+**One-Hot Encoding**
+
+| Color | Red | Blue | Green |
+|--------|-----|------|-------|
+| Red | 1 | 0 | 0 |
+| Blue | 0 | 1 | 0 |
+| Green | 0 | 0 | 1 |
+
+---
+
+### 5. Feature Scaling
+
+Feature scaling transforms numerical features so they have a similar range. This prevents features with larger values from dominating those with smaller values.
+
+Scaling is especially important for algorithms that rely on distance calculations, such as K-Nearest Neighbors (KNN), Support Vector Machines (SVM), and K-Means clustering.
+
+#### Common Scaling Techniques
+
+- **Min-Max Scaling:** Scales values to a fixed range, usually **0 to 1**.
+- **Standardization (Z-Score Normalization):** Centers data around a mean of 0 with a standard deviation of 1.
+
+---
+
+### 6. Splitting Data
+
+Before training a model, the dataset is divided into separate subsets to evaluate how well the model generalizes to unseen data.
+
+#### Common Data Splits
+
+- **Training Set (70–80%)** – Used to train the model.
+- **Validation Set (10–15%)** – Used to tune model parameters and select the best model.
+- **Test Set (10–20%)** – Used to evaluate the final model's performance on unseen data.
+
+**Example:**
+
+Dataset (1000 samples)
+
+- Training Set: 800 samples
+- Validation Set: 100 samples
+- Test Set: 100 samples
+
+---
+
+## Data Pre-processing Workflow
+
+```
+Raw Data
+    │
+    ▼
+Check Data Quality
+    │
+    ▼
+Handle Missing Data
+    │
+    ▼
+Detect & Treat Outliers
+    │
+    ▼
+Encode Categorical Data
+    │
+    ▼
+Scale Numerical Features
+    │
+    ▼
+Split Dataset
+    │
+    ▼
+Ready for Model Training
+```
+
+---
+
+## Summary
+
+| Component | Purpose |
+|-----------|---------|
+| Data Quality | Ensures data is accurate, complete, and consistent |
+| Missing Data | Handles incomplete values by removing or imputing them |
+| Detecting Outliers | Identifies unusual data points that may affect model performance |
+| Encoding | Converts categorical data into numerical format |
+| Feature Scaling | Normalizes feature values to a similar range |
+| Splitting Data | Divides data into training, validation, and test sets |
