@@ -1006,6 +1006,228 @@ Scaled Value = (30 - 20) / (40 - 20)
 - K-Means Clustering
 - Neural Networks
 
+
+----
+# Data Splitting Techniques
+
+Data splitting is the process of dividing a dataset into separate subsets for training, validating, and testing a machine learning model. Splitting the data helps evaluate how well the model performs on unseen data and reduces the risk of overfitting.
+
+---
+
+# Why Split the Data?
+
+Data splitting helps to:
+
+- Train the model using one portion of the data.
+- Tune model parameters without using the test data.
+- Evaluate the model on unseen data.
+- Measure how well the model generalizes to new data.
+
+---
+
+# Common Data Splitting Techniques
+
+## 1. Train-Test Split
+
+The dataset is divided into two parts:
+
+- **Training Set:** Used to train the model.
+- **Test Set:** Used to evaluate the model's performance.
+
+### Common Split Ratios
+
+- 80% Training / 20% Testing
+- 70% Training / 30% Testing
+- 75% Training / 25% Testing
+
+### Example
+
+Dataset: **1000 records**
+
+| Dataset | Records |
+|---------|--------:|
+| Training Set | 800 |
+| Test Set | 200 |
+
+### Advantages
+
+- Simple and fast.
+- Suitable for large datasets.
+
+### Disadvantages
+
+- Model performance depends on one random split.
+- May not represent the entire dataset well.
+
+---
+
+## 2. Train-Validation-Test Split
+
+The dataset is divided into three subsets:
+
+- **Training Set:** Used to train the model.
+- **Validation Set:** Used to tune hyperparameters and select the best model.
+- **Test Set:** Used to evaluate the final model.
+
+### Common Split Ratios
+
+- 70% Training / 15% Validation / 15% Testing
+- 80% Training / 10% Validation / 10% Testing
+
+### Example
+
+Dataset: **1000 records**
+
+| Dataset | Records |
+|---------|--------:|
+| Training Set | 700 |
+| Validation Set | 150 |
+| Test Set | 150 |
+
+### Advantages
+
+- Provides an unbiased evaluation.
+- Prevents using the test set during model tuning.
+
+### Disadvantages
+
+- Requires more data.
+- Smaller training dataset compared to Train-Test Split.
+
+---
+
+## 3. K-Fold Cross Validation
+
+K-Fold Cross Validation divides the dataset into **K equal-sized folds**.
+
+The model is trained **K times**, each time using:
+
+- **K − 1 folds** for training.
+- **1 fold** for testing.
+
+The final performance is the average of all K runs.
+
+### Example (5-Fold Cross Validation)
+
+```
+Fold 1 : Test | Train | Train | Train | Train
+Fold 2 : Train | Test | Train | Train | Train
+Fold 3 : Train | Train | Test | Train | Train
+Fold 4 : Train | Train | Train | Test | Train
+Fold 5 : Train | Train | Train | Train | Test
+```
+
+### Common Values
+
+- K = 5
+- K = 10
+
+### Advantages
+
+- More reliable evaluation.
+- Uses the entire dataset for both training and testing.
+- Reduces bias caused by a single split.
+
+### Disadvantages
+
+- Computationally expensive.
+- Training takes longer.
+
+---
+
+## 4. Stratified Sampling
+
+Stratified Sampling ensures that each dataset split has the **same class distribution** as the original dataset.
+
+This technique is mainly used for **classification problems**, especially when the dataset is imbalanced.
+
+### Example
+
+Original Dataset
+
+| Class | Percentage |
+|--------|-----------:|
+| Yes | 90% |
+| No | 10% |
+
+After splitting, both the training and testing sets maintain the same 90:10 ratio.
+
+### Advantages
+
+- Preserves class distribution.
+- Improves evaluation for imbalanced datasets.
+
+### Disadvantages
+
+- Applicable only to classification problems.
+
+---
+
+## 5. Leave-One-Out Cross Validation (LOOCV)
+
+Leave-One-Out Cross Validation is a special case of K-Fold Cross Validation where:
+
+- **K = Number of samples**
+
+Each iteration:
+
+- One sample is used for testing.
+- All remaining samples are used for training.
+
+### Example
+
+Dataset with 5 records
+
+```
+Iteration 1
+Test : Record 1
+Train: Records 2,3,4,5
+
+Iteration 2
+Test : Record 2
+Train: Records 1,3,4,5
+
+...
+
+Iteration 5
+Test : Record 5
+Train: Records 1,2,3,4
+```
+
+### Advantages
+
+- Uses nearly all data for training.
+- Very accurate for small datasets.
+
+### Disadvantages
+
+- Extremely slow for large datasets.
+- Computationally expensive.
+
+---
+
+# Comparison of Data Splitting Techniques
+
+| Technique | Training Data | Validation Data | Test Data | Best For |
+|-----------|---------------|-----------------|-----------|----------|
+| Train-Test Split | ✓ | ✗ | ✓ | Large datasets |
+| Train-Validation-Test Split | ✓ | ✓ | ✓ | Model tuning |
+| K-Fold Cross Validation | ✓ | Multiple folds | ✓ | Small to medium datasets |
+| Stratified Sampling | ✓ | Optional | ✓ | Imbalanced classification datasets |
+| Leave-One-Out Cross Validation | ✓ | ✗ | One sample at a time | Very small datasets |
+
+---
+
+# Summary
+
+| Technique | Purpose |
+|-----------|---------|
+| Train-Test Split | Simple evaluation using one split |
+| Train-Validation-Test Split | Model training, tuning, and final evaluation |
+| K-Fold Cross Validation | Reliable performance estimation using multiple splits |
+| Stratified Sampling | Maintains class distribution during splitting |
+| Leave-One-Out Cross Validation | Uses almost all data for training and tests one sample at a time |
+
 ---
 
 # 2. Z-Score Normalization (Standardization)
