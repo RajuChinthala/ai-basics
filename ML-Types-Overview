@@ -40,6 +40,7 @@ Data pre-processing
     Encoding
     Feature Scaling
         - Min-Max scalling - (x - xmin/ xmax - xmin) Gives the range between [0,1] 
+        - Z-Score Normalization z = (x-mean) / std
     Splitting Data
     
 
