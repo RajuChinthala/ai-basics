@@ -171,3 +171,224 @@ Suppose we want to predict whether an email is spam.
 | Contains Suspicious Links | Spam     |
 
 The supervised learning model learns the relationship between the email features and their labels. When a new email arrives, the model predicts whether it is **Spam** or **Not Spam** based on the patterns learned during training.
+
+
+----
+# Regression Evaluation Metrics
+
+Regression evaluation metrics measure how well a regression model predicts continuous numerical values. These metrics compare the model's predicted values with the actual values.
+
+---
+
+# Why Evaluate Regression Models?
+
+Evaluation metrics help to:
+
+- Measure prediction accuracy.
+- Compare different regression models.
+- Identify underfitting or overfitting.
+- Select the best-performing model.
+
+---
+
+# Common Regression Evaluation Metrics
+
+## 1. Mean Absolute Error (MAE)
+
+Mean Absolute Error (MAE) measures the average absolute difference between the actual values and the predicted values.
+
+### Formula
+
+```text
+MAE = (1/n) Σ |Actual - Predicted|
+```
+
+Where:
+
+- **n** = Number of observations
+- **Actual** = True value
+- **Predicted** = Model prediction
+
+### Example
+
+| Actual | Predicted | Absolute Error |
+|--------:|----------:|---------------:|
+| 100 | 95 | 5 |
+| 120 | 125 | 5 |
+| 140 | 138 | 2 |
+
+```text
+MAE = (5 + 5 + 2) / 3 = 4
+```
+
+### Advantages
+
+- Easy to understand.
+- Less sensitive to outliers.
+
+### Disadvantages
+
+- Does not penalize large errors heavily.
+
+---
+
+## 2. Mean Squared Error (MSE)
+
+Mean Squared Error (MSE) measures the average squared difference between actual and predicted values.
+
+### Formula
+
+```text
+MSE = (1/n) Σ (Actual - Predicted)²
+```
+
+### Example
+
+| Actual | Predicted | Squared Error |
+|--------:|----------:|--------------:|
+| 100 | 95 | 25 |
+| 120 | 125 | 25 |
+| 140 | 138 | 4 |
+
+```text
+MSE = (25 + 25 + 4) / 3 = 18
+```
+
+### Advantages
+
+- Penalizes large errors.
+- Widely used in machine learning.
+
+### Disadvantages
+
+- Sensitive to outliers.
+
+---
+
+## 3. Root Mean Squared Error (RMSE)
+
+Root Mean Squared Error (RMSE) is the square root of MSE.
+
+### Formula
+
+```text
+RMSE = √MSE
+```
+
+### Example
+
+```text
+RMSE = √18 ≈ 4.24
+```
+
+### Advantages
+
+- Same unit as the target variable.
+- Penalizes large prediction errors.
+
+### Disadvantages
+
+- Sensitive to outliers.
+
+---
+
+## 4. R-Squared (R² Score)
+
+R² measures how well the regression model explains the variation in the target variable.
+
+The value ranges between **0 and 1**.
+
+- **1** → Perfect prediction.
+- **0** → Model performs no better than predicting the mean.
+- **Less than 0** → Model performs worse than predicting the mean.
+
+### Formula
+
+```text
+R² = 1 - (SSres / SStot)
+```
+
+Where:
+
+- **SSres** = Sum of Squared Residuals
+- **SStot** = Total Sum of Squares
+
+### Interpretation
+
+| R² Score | Interpretation |
+|----------|----------------|
+| 1.0 | Perfect fit |
+| 0.9 | Excellent model |
+| 0.8 | Good model |
+| 0.6 | Moderate model |
+| 0.0 | Poor model |
+
+### Advantages
+
+- Easy to interpret.
+- Measures goodness of fit.
+
+### Disadvantages
+
+- Does not indicate whether predictions are unbiased.
+- Can increase when unnecessary features are added.
+
+---
+
+## 5. Adjusted R-Squared
+
+Adjusted R² modifies the R² score by considering the number of predictor variables in the model.
+
+Unlike R², Adjusted R² penalizes the addition of irrelevant features.
+
+### Formula
+
+```text
+Adjusted R² = 1 - [(1 - R²)(n - 1) / (n - p - 1)]
+```
+
+Where:
+
+- **n** = Number of observations
+- **p** = Number of predictor variables
+
+### Advantages
+
+- Prevents overestimating model performance.
+- Useful for multiple linear regression.
+
+---
+
+# Comparison of Regression Metrics
+
+| Metric | Lower is Better | Sensitive to Outliers | Unit |
+|---------|-----------------|-----------------------|------|
+| MAE | Yes | No | Same as target |
+| MSE | Yes | Yes | Squared unit |
+| RMSE | Yes | Yes | Same as target |
+| R² Score | No (Higher is Better) | No | No unit |
+| Adjusted R² | No (Higher is Better) | No | No unit |
+
+---
+
+# When to Use Each Metric
+
+| Metric | Best Used When |
+|---------|----------------|
+| MAE | Equal importance to all prediction errors |
+| MSE | Large errors should be penalized more heavily |
+| RMSE | Need an interpretable error in the original units |
+| R² Score | Measure how well the model explains data variance |
+| Adjusted R² | Compare regression models with different numbers of features |
+
+---
+
+# Summary
+
+| Metric | Description |
+|---------|-------------|
+| Mean Absolute Error (MAE) | Average absolute prediction error |
+| Mean Squared Error (MSE) | Average squared prediction error |
+| Root Mean Squared Error (RMSE) | Square root of MSE; error in original units |
+| R² Score | Proportion of variance explained by the model |
+| Adjusted R² | R² adjusted for the number of predictor variables |
