@@ -33,11 +33,13 @@ Data pre-processing
     Data Quality
     Missing Data - Remove column or row based on column importance
     Detecting Outliers - Identifying data points that are significantly different from the rest of the dataset
-          - Z-score (standar score)
-          - Interquartile Range 
-          - Winsorization Visualizer
+          - Z-score (standar score) - meansures how many deviations a values is way from the mean z= (x- mean) / standard deviation   > 3 (we can consider as outlier)
+          - Interquartile Range = IQR = Q3-Q2   (Q3 = (75-n) / n-1 , Q2= (25-n)/n-1)) , identify position (take lower + 
+          - Winsorization Visualizer - (lower fench = Q1-1.5*IQR and lower fench = Q2-1.5*IQR)  
+        
     Encoding
     Feature Scaling
+        - Min-Max scalling - (x - xmin/ xmax - xmin) Gives the range between [0,1] 
     Splitting Data
     
 
