@@ -5,6 +5,7 @@ Supervised Learning is a type of machine learning in which the model is trained 
 
 The model learns by comparing its predictions with the actual labels and continuously adjusting its parameters to minimize prediction errors.
 
+You give the question and answer and then fix them also , Just like ur teacher
 ---
 
 # How Supervised Learning Works
