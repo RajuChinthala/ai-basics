@@ -42,6 +42,9 @@ Data pre-processing
         - Min-Max scalling - (x - xmin/ xmax - xmin) Gives the range between [0,1] 
         - Z-Score Normalization z = (x-mean) / std
     Splitting Data
+      -  Training Dataset
+      - Validation Dataset
+      - Test Dataset
     
 
   Features:
