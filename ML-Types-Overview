@@ -64,12 +64,18 @@ Supervised learning
         -  Simple Linear Regression
         -  Multi Linear Regression
 
-  Evaluation
+  Evaluation/Error metrics
       - Mean abosulate Error (MAE)
       - Means Squared Error (MSE)
       - Root mean squared Error (RMSE)
       - R-Square
       - Adjusted R2
-      
+
+  Correlation - Pearson correlation formula
+      - Strength and direction of linerar relationship. r=(+/-1)
+
+   Logistic Regression:
+      - Is not regression, instead of a number predicts a probability (0 or 1) that an outcome belongs to a class. 
+
   classification - What type /category
   
