@@ -57,5 +57,19 @@ Data pre-processing
 
 Supervised learning
   Regression - How many / How many
+      Types
+        - Liner Regression
+        - Logistc Regression
+      Model
+        -  Simple Linear Regression
+        -  Multi Linear Regression
+
+  Evaluation
+      - Mean abosulate Error (MAE)
+      - Means Squared Error (MSE)
+      - Root mean squared Error (RMSE)
+      - R-Square
+      - Adjusted R2
+      
   classification - What type /category
   
