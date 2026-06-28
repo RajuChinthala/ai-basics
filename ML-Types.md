@@ -925,3 +925,190 @@ The salary **500,000** creates a positive (right) skew because it is much larger
 
 **Key Point:**  
 Skewed data is data that is **asymmetrical**, meaning one side of the distribution has a longer tail than the other. Detecting and correcting skewness can improve the performance of machine learning models and statistical analyses.
+
+
+# Feature Scaling
+
+Feature scaling is the process of transforming numerical features so that they are on a similar scale. It prevents features with larger values from dominating those with smaller values and helps many machine learning algorithms perform better.
+
+The two most common feature scaling techniques are:
+
+- **Min-Max Scaling (Normalization)**
+- **Z-Score Normalization (Standardization)**
+
+---
+
+# 1. Min-Max Scaling (Normalization)
+
+Min-Max Scaling rescales feature values to a fixed range, typically **0 to 1**.
+
+## Formula
+
+```text
+Scaled Value = (x - xmin) / (xmax - xmin)
+```
+
+Where:
+
+- **x** = Original value
+- **xmin** = Minimum value in the feature
+- **xmax** = Maximum value in the feature
+
+---
+
+## Example
+
+Suppose the **Age** feature contains:
+
+| Age |
+|----:|
+| 20 |
+| 25 |
+| 30 |
+| 35 |
+| 40 |
+
+- Minimum (xmin) = **20**
+- Maximum (xmax) = **40**
+
+Normalize the value **30**:
+
+```text
+Scaled Value = (30 - 20) / (40 - 20)
+             = 10 / 20
+             = 0.50
+```
+
+### Result
+
+| Original Age | Normalized Age |
+|-------------:|---------------:|
+| 20 | 0.00 |
+| 25 | 0.25 |
+| 30 | 0.50 |
+| 35 | 0.75 |
+| 40 | 1.00 |
+
+### Advantages
+
+- Simple and easy to implement.
+- Scales all features to the same range.
+- Works well with distance-based algorithms.
+
+### Disadvantages
+
+- Sensitive to outliers.
+- Extreme values can compress the remaining data.
+
+### Common Algorithms
+
+- K-Nearest Neighbors (KNN)
+- K-Means Clustering
+- Neural Networks
+
+---
+
+# 2. Z-Score Normalization (Standardization)
+
+Z-Score Normalization transforms data so that it has:
+
+- **Mean = 0**
+- **Standard Deviation = 1**
+
+Instead of scaling values to a fixed range, it measures how many standard deviations a value is from the mean.
+
+## Formula
+
+```text
+z = (x - μ) / σ
+```
+
+Where:
+
+- **z** = Standardized value
+- **x** = Original value
+- **μ (mu)** = Mean of the feature
+- **σ (sigma)** = Standard deviation of the feature
+
+---
+
+## Example
+
+Suppose the **Age** feature contains:
+
+| Age |
+|----:|
+| 20 |
+| 25 |
+| 30 |
+| 35 |
+| 40 |
+
+- Mean (μ) = **30**
+- Standard Deviation (σ) ≈ **7.07**
+
+Standardize the value **35**:
+
+```text
+z = (35 - 30) / 7.07
+  = 5 / 7.07
+  ≈ 0.71
+```
+
+### Result
+
+| Original Age | Z-Score |
+|-------------:|--------:|
+| 20 | -1.41 |
+| 25 | -0.71 |
+| 30 | 0.00 |
+| 35 | 0.71 |
+| 40 | 1.41 |
+
+### Interpretation
+
+- **z = 0** → Value is equal to the mean.
+- **z > 0** → Value is above the mean.
+- **z < 0** → Value is below the mean.
+- **|z| > 3** → Often considered an outlier.
+
+### Advantages
+
+- Less sensitive to outliers than Min-Max Scaling.
+- Centers data around zero.
+- Works well when data follows a normal distribution.
+
+### Disadvantages
+
+- Does not limit values to a fixed range.
+- Values can be greater than 1 or less than -1.
+
+### Common Algorithms
+
+- Linear Regression
+- Logistic Regression
+- Support Vector Machines (SVM)
+- Principal Component Analysis (PCA)
+- K-Means Clustering
+
+---
+
+# Min-Max Scaling vs. Z-Score Normalization
+
+| Feature | Min-Max Scaling | Z-Score Normalization |
+|---------|------------------|-----------------------|
+| Formula | `(x - xmin) / (xmax - xmin)` | `(x - μ) / σ` |
+| Output Range | 0 to 1 | No fixed range |
+| Mean After Scaling | Not fixed | 0 |
+| Standard Deviation | Not fixed | 1 |
+| Sensitive to Outliers | Yes | Less sensitive |
+| Best For | KNN, Neural Networks | Regression, SVM, PCA |
+
+---
+
+# Summary
+
+| Technique | Purpose | Output Range | Best Used For |
+|-----------|---------|--------------|---------------|
+| **Min-Max Scaling** | Rescales data to a fixed range | Usually 0 to 1 | Distance-based algorithms like KNN and Neural Networks |
+| **Z-Score Normalization** | Centers data around the mean with a standard deviation of 1 | No fixed range | Algorithms that assume normally distributed data such as SVM, PCA, and Regression |
