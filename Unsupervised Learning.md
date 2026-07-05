@@ -166,7 +166,12 @@ A model in unsupervised learning identifies hidden structures or relationships w
 
 # Disadvantages
 
-* Difficult to evaluate because there are no true labels.
+* Computational Complexity - Due to massive datasets sizes & Difficult to evaluate because there are no true labels.
+* Longer Training Times - Algorithms need multiple restarts
+* High Risk of Inaccurate Results - no ground trugh to check against.
+* Human Intervention Required - experts must interpret clusters
+* Lack of Transparency - high-dimentional results can't be explained.
+* 
 * Results may be harder to interpret.
 * Sensitive to algorithm choice and parameter settings.
 * Different algorithms may produce different groupings for the same data.
