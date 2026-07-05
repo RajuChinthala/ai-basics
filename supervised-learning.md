@@ -392,3 +392,173 @@ Where:
 | Root Mean Squared Error (RMSE) | Square root of MSE; error in original units |
 | R² Score | Proportion of variance explained by the model |
 | Adjusted R² | R² adjusted for the number of predictor variables |
+
+------------
+# Classification
+
+Classification is a supervised machine learning task in which the model predicts **categorical labels** instead of continuous numerical values.
+
+Examples include:
+
+* Spam or Not Spam
+* Fraud or Not Fraud
+* Disease Present or Not Present
+
+Depending on the number of classes and labels, classification problems are divided into four main types.
+
+---
+
+# Types of Classification
+
+## 1. Binary Classification
+
+Binary Classification predicts one of **two possible classes**.
+
+### Characteristics
+
+* Only two output classes.
+* Most common type of classification problem.
+
+### Examples
+
+* Spam / Not Spam
+* Yes / No
+* True / False
+* Fraud / Not Fraud
+* Pass / Fail
+
+### Example Dataset
+
+| Email Contains Suspicious Links | Label    |
+| ------------------------------- | -------- |
+| Yes                             | Spam     |
+| No                              | Not Spam |
+| Yes                             | Spam     |
+| No                              | Not Spam |
+
+### Common Algorithms
+
+* Logistic Regression
+* Support Vector Machine (SVM)
+* Decision Tree
+* Random Forest
+* K-Nearest Neighbors (KNN)
+* Naïve Bayes
+
+---
+
+## 2. Multiclass Classification
+
+Multiclass Classification predicts **one class from three or more possible classes**.
+
+Each observation belongs to **exactly one class**.
+
+### Examples
+
+* Digit Recognition (0–9)
+* Animal Classification (Cat, Dog, Bird)
+* Fruit Classification (Apple, Orange, Banana)
+* Iris Flower Classification
+
+### Example Dataset
+
+| Image | Predicted Class |
+| ----- | --------------- |
+| 🐱    | Cat             |
+| 🐶    | Dog             |
+| 🐦    | Bird            |
+
+### Common Algorithms
+
+* Decision Tree
+* Random Forest
+* Support Vector Machine (One-vs-Rest)
+* K-Nearest Neighbors (KNN)
+* Neural Networks
+
+---
+
+## 3. Multi-Label Classification
+
+Multi-Label Classification allows an observation to belong to **multiple classes at the same time**.
+
+Unlike multiclass classification, an instance can have **more than one label**.
+
+### Examples
+
+* Movie Genres (Action, Comedy, Drama)
+* Image Tagging (Dog, Beach, Sunset)
+* News Categorization
+* Product Tagging
+
+### Example Dataset
+
+| Image         | Labels                |
+| ------------- | --------------------- |
+| Beach Photo   | Beach, Sunset         |
+| Dog Playing   | Dog, Animal           |
+| Family Picnic | People, Food, Outdoor |
+
+### Common Algorithms
+
+* Binary Relevance
+* Classifier Chains
+* Random Forest
+* Neural Networks
+
+---
+
+## 4. Imbalanced Classification
+
+Imbalanced Classification occurs when one class has **significantly more samples than the other classes**.
+
+### Example
+
+Fraud Detection Dataset
+
+| Class               | Percentage |
+| ------------------- | ---------: |
+| Genuine Transaction |        99% |
+| Fraud Transaction   |         1% |
+
+In this case, predicting every transaction as "Genuine" would achieve high accuracy but fail to detect fraud.
+
+### Common Solutions
+
+* Oversampling (SMOTE)
+* Undersampling
+* Class Weighting
+* Ensemble Methods
+
+### Evaluation Metrics
+
+For imbalanced datasets, accuracy alone is not sufficient. Common metrics include:
+
+* Precision
+* Recall
+* F1 Score
+* ROC-AUC
+* Precision-Recall Curve
+
+---
+
+# Comparison of Classification Types
+
+| Type                       | Number of Classes | Labels per Sample | Example          |
+| -------------------------- | ----------------- | ----------------- | ---------------- |
+| Binary Classification      | 2                 | One               | Spam / Not Spam  |
+| Multiclass Classification  | 3 or more         | One               | Cat / Dog / Bird |
+| Multi-Label Classification | 2 or more         | Multiple          | Beach, Sunset    |
+| Imbalanced Classification  | Any               | One or More       | Fraud Detection  |
+
+---
+
+# Summary
+
+| Classification Type        | Description                                                                |
+| -------------------------- | -------------------------------------------------------------------------- |
+| Binary Classification      | Predicts one of two possible classes.                                      |
+| Multiclass Classification  | Predicts one class from three or more classes.                             |
+| Multi-Label Classification | Assigns multiple labels to a single instance.                              |
+| Imbalanced Classification  | Deals with datasets where some classes have far fewer samples than others. |
+
