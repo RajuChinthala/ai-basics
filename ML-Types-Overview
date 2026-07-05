@@ -78,4 +78,42 @@ Supervised learning
       - Is not regression, instead of a number predicts a probability (0 or 1) that an outcome belongs to a class. 
 
   classification - What type /category
+    - Learn from the labeled data to categorize new inputs into predefined classes
+    Types:
+      - Binary classification (yes or no / 1 or 0 / true or false)
+        Common Algorithms
+          Logistic Regression
+          Support Vector Machine (SVM)
+          Decision Tree
+          Random Forest
+          K-Nearest Neighbors (KNN)
+          Naïve Bayes
+      - Multi - class classification
+        - one class from three or more possible classes.
+        -  Each observation belongs to exactly one class
+        Common Algorithms  
+          Decision Tree
+          Random Forest
+          Support Vector Machine (One-vs-Rest)
+          K-Nearest Neighbors (KNN)
+          Neural Networks
+
+      - Multi - label classification
+       - multiple classes at the same time. 
+       - Unlike multiclass classification, an instance can have more than one label.
+       Common Algorithms
+          Binary Relevance
+          Classifier Chains
+          Random Forest
+          Neural Networks
+        
+      - Imbalanced Classification
+        - significantly more samples than the other classes.
+         Common Solutions
+          Oversampling (SMOTE)
+          Undersampling
+          Class Weighting
+          Ensemble Methods
+
+      
   
