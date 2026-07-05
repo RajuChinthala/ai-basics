@@ -201,3 +201,42 @@ A model in unsupervised learning identifies hidden structures or relationships w
 | Common Algorithms | K-Means, Hierarchical Clustering, DBSCAN, PCA, Apriori, FP-Growth, Autoencoders          |
 | Applications      | Customer Segmentation, Market Basket Analysis, Recommendation Systems, Anomaly Detection |
 
+------
+# Clustering Technique Comparison
+
+| Technique | Hard / Soft | Need K Upfront? | Handles Non-Spherical Clusters? | Scalability | Best For |
+|-----------|-------------|-----------------|---------------------------------|------------|----------|
+| **K-Means** | Hard | ✅ Yes | ❌ No (Spherical clusters only) | 🟢 High – O(n × k × d × i) | Large, well-separated spherical clusters |
+| **Elbow Method** | Tool | ❌ No | N/A | 🔴 Low (Runs K-Means multiple times) | Selecting the optimal value of K |
+| **Hierarchical Clustering** | Hard | ❌ No | ✅ Yes | 🔴 Low – O(n² log n) | Small datasets and hierarchical relationships |
+| **Dendrogram** | Visualization | ❌ No | ✅ Yes | 🔴 Low | Visualizing cluster hierarchy and choosing clusters |
+| **Gaussian Mixture Model (GMM)** | Soft | ✅ Yes | ✅ Yes (Elliptical clusters) | 🟡 Medium | Overlapping or probabilistic clusters |
+| **Fuzzy C-Means** | Soft | ✅ Yes | ⚠️ Partially | 🟡 Medium | Data with ambiguous cluster boundaries |
+| **DBSCAN** | Hard | ❌ No | ✅ Yes | 🟢 High (Average O(n log n)) | Arbitrary-shaped clusters and outlier detection |
+| **Mean Shift** | Soft | ❌ No | ✅ Yes | 🔴 Low | Automatically finding clusters without specifying K |
+| **OPTICS** | Hard | ❌ No | ✅ Yes | 🟡 Medium | Clusters with varying densities |
+| **Agglomerative Clustering** | Hard | ❌ No | ✅ Yes | 🔴 Low – O(n²) | Small datasets and hierarchical clustering |
+
+---
+
+## Legend
+
+- **Hard Clustering:** Each data point belongs to exactly one cluster.
+- **Soft Clustering:** A data point can belong to multiple clusters with different probabilities or membership values.
+- **Need K Upfront:** Indicates whether the number of clusters (**K**) must be specified before training.
+- **Non-Spherical Clusters:** Indicates whether the algorithm can detect clusters with irregular or arbitrary shapes.
+- **Scalability:** Describes how efficiently the algorithm handles large datasets.
+
+---
+
+## Summary
+
+| Algorithm | Strength | Limitation |
+|-----------|----------|------------|
+| **K-Means** | Fast and simple | Requires K and assumes spherical clusters |
+| **Hierarchical Clustering** | Produces cluster hierarchy | Not suitable for large datasets |
+| **DBSCAN** | Detects arbitrary-shaped clusters and outliers | Sensitive to parameter selection |
+| **GMM** | Handles overlapping clusters | Computationally expensive |
+| **Fuzzy C-Means** | Allows partial cluster membership | Requires K and more computation |
+| **Mean Shift** | Automatically determines the number of clusters | Slow for large datasets |
+| **OPTICS** | Handles varying-density clusters | More complex than DBSCAN |
