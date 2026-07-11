@@ -125,6 +125,148 @@ A model in unsupervised learning identifies hidden structures or relationships w
 | Autoencoder             | Learns compressed representations of data |
 
 ---
+# Types of Points in DBSCAN
+
+DBSCAN (Density-Based Spatial Clustering of Applications with Noise) classifies each data point into one of three categories based on the density of its surrounding neighborhood.
+
+The three types of points are:
+
+- Core Point
+- Border Point
+- Noise (Outlier) Point
+
+DBSCAN uses two parameters:
+
+- **ε (Epsilon):** The radius used to search for neighboring points.
+- **MinPts:** The minimum number of points required within the ε-neighborhood to form a dense region.
+
+---
+
+# 1. Core Point
+
+A **Core Point** is a point that has at least **MinPts** points (including itself) within its ε-neighborhood.
+
+## Characteristics
+
+- Forms the center of a cluster.
+- Can directly reach other nearby points.
+- Expands the cluster by connecting neighboring points.
+
+### Example
+
+Suppose:
+
+- ε = 2
+- MinPts = 5
+
+If Point **A** has **6 points** within its ε-neighborhood, then:
+
+```text
+Point A → Core Point
+```
+
+---
+
+# 2. Border Point
+
+A **Border Point** has fewer than **MinPts** neighbors within its ε-neighborhood but lies within the ε-neighborhood of a Core Point.
+
+## Characteristics
+
+- Belongs to a cluster.
+- Cannot create or expand a cluster.
+- Connected to a cluster through a Core Point.
+
+### Example
+
+```text
+Core Point
+     ●
+   / | \
+  ●  ●  ○
+        ↑
+   Border Point
+```
+
+The border point belongs to the cluster because it is reachable from the core point.
+
+---
+
+# 3. Noise Point (Outlier)
+
+A **Noise Point** is a point that is **not within the ε-neighborhood of any Core Point** and does not satisfy the conditions to be a Core Point or Border Point.
+
+## Characteristics
+
+- Does not belong to any cluster.
+- Considered an outlier or anomaly.
+- Ignored during cluster formation.
+
+### Example
+
+```text
+Cluster
+
+● ● ● ● ●
+
+          ○
+
+      Noise Point
+```
+
+---
+
+# Visual Representation
+
+```text
+           ε Neighborhood
+
+          ●   ●
+       ●   C   ●
+          ●   ●
+
+C = Core Point
+
+--------------------------
+
+        C
+      / | \
+     ●  ●  B
+
+B = Border Point
+
+--------------------------
+
+Cluster
+
+● ● ● ● ●
+
+          N
+
+N = Noise Point
+```
+
+---
+
+# Comparison of DBSCAN Point Types
+
+| Point Type | Minimum Neighbors (MinPts) | Belongs to Cluster | Can Expand Cluster | Description |
+|------------|----------------------------|--------------------|--------------------|-------------|
+| Core Point | ≥ MinPts | ✅ Yes | ✅ Yes | Dense point that forms the center of a cluster |
+| Border Point | < MinPts | ✅ Yes | ❌ No | Connected to a Core Point but cannot expand the cluster |
+| Noise Point | < MinPts | ❌ No | ❌ No | Outlier that does not belong to any cluster |
+
+---
+
+# Summary
+
+| Point Type | Role |
+|------------|------|
+| **Core Point** | Starts and expands clusters. |
+| **Border Point** | Belongs to a cluster but cannot create or expand it. |
+| **Noise Point** | Considered an outlier and excluded from clusters. |
+
+---
 
 # Unsupervised Learning Algorithms
 
