@@ -240,3 +240,227 @@ A model in unsupervised learning identifies hidden structures or relationships w
 | **Fuzzy C-Means** | Allows partial cluster membership | Requires K and more computation |
 | **Mean Shift** | Automatically determines the number of clusters | Slow for large datasets |
 | **OPTICS** | Handles varying-density clusters | More complex than DBSCAN |
+
+------------
+# Distance Metrics
+
+Distance metrics measure the similarity or dissimilarity between two data points. They are widely used in machine learning algorithms such as K-Nearest Neighbors (KNN), K-Means Clustering, Hierarchical Clustering, and DBSCAN.
+
+Choosing the appropriate distance metric can significantly impact the performance of a machine learning model.
+
+---
+
+# Common Distance Metrics
+
+## 1. Euclidean Distance
+
+Euclidean Distance measures the straight-line distance between two points in Euclidean space.
+
+### Formula
+
+```text
+d(x, y) = √Σ(xi - yi)²
+```
+
+### Characteristics
+
+- Most commonly used distance metric.
+- Works well with continuous numerical data.
+- Sensitive to feature scaling.
+
+### Applications
+
+- K-Means Clustering
+- K-Nearest Neighbors (KNN)
+- Hierarchical Clustering
+
+---
+
+## 2. Manhattan Distance
+
+Manhattan Distance measures the distance by moving only horizontally and vertically (city-block distance).
+
+### Formula
+
+```text
+d(x, y) = Σ|xi - yi|
+```
+
+### Characteristics
+
+- Less sensitive to outliers than Euclidean distance.
+- Suitable when movement is restricted to grid-like paths.
+
+### Applications
+
+- KNN
+- Clustering
+- High-dimensional datasets
+
+---
+
+## 3. Minkowski Distance
+
+Minkowski Distance is a generalized distance metric that includes both Euclidean and Manhattan distances.
+
+### Formula
+
+```text
+d(x, y) = (Σ|xi - yi|ᵖ)^(1/p)
+```
+
+Where:
+
+- **p = 1** → Manhattan Distance
+- **p = 2** → Euclidean Distance
+
+### Applications
+
+- KNN
+- General-purpose distance calculations
+
+---
+
+## 4. Chebyshev Distance
+
+Chebyshev Distance measures the maximum absolute difference between any pair of coordinates.
+
+### Formula
+
+```text
+d(x, y) = max(|xi - yi|)
+```
+
+### Characteristics
+
+- Focuses on the largest difference.
+- Useful when the maximum deviation is important.
+
+### Applications
+
+- Chessboard movement
+- Quality control
+
+---
+
+## 5. Cosine Distance
+
+Cosine Distance measures the angle between two vectors rather than the actual distance.
+
+### Formula
+
+```text
+Cosine Similarity = (A · B) / (||A|| × ||B||)
+
+Cosine Distance = 1 - Cosine Similarity
+```
+
+### Characteristics
+
+- Ignores vector magnitude.
+- Measures orientation instead of distance.
+
+### Applications
+
+- Text Mining
+- Document Similarity
+- Recommendation Systems
+- NLP
+
+---
+
+## 6. Hamming Distance
+
+Hamming Distance counts the number of positions where two categorical or binary vectors differ.
+
+### Example
+
+```text
+101101
+100111
+------
+Difference = 2
+```
+
+### Applications
+
+- Error Detection
+- DNA Sequence Analysis
+- Binary Classification
+
+---
+
+## 7. Jaccard Distance
+
+Jaccard Distance measures dissimilarity between two sets.
+
+### Formula
+
+```text
+Jaccard Similarity = |A ∩ B| / |A ∪ B|
+
+Jaccard Distance = 1 - Jaccard Similarity
+```
+
+### Applications
+
+- Recommendation Systems
+- Text Analysis
+- Market Basket Analysis
+
+---
+
+# Comparison of Distance Metrics
+
+| Distance Metric | Formula | Data Type | Sensitive to Scale | Best For | Common Algorithms |
+|-----------------|---------|-----------|--------------------|----------|-------------------|
+| Euclidean | √Σ(xi−yi)² | Numerical | ✅ Yes | Straight-line distance | K-Means, KNN |
+| Manhattan | Σ|xi−yi| | Numerical | ✅ Yes | Grid-based movement | KNN, Clustering |
+| Minkowski | (Σ|xi−yi|ᵖ)¹/ᵖ | Numerical | ✅ Yes | General-purpose distance | KNN |
+| Chebyshev | max(|xi−yi|) | Numerical | ✅ Yes | Maximum difference | Quality Control |
+| Cosine | 1 − Cosine Similarity | Vectors | ❌ No | Text similarity | NLP, Recommendation Systems |
+| Hamming | Count of differing positions | Binary/Categorical | ❌ No | Binary data | Error Detection |
+| Jaccard | 1 − (Intersection / Union) | Sets/Binary | ❌ No | Set similarity | Recommendation Systems |
+
+---
+
+# Distance Metrics Used by Machine Learning Algorithms
+
+| Algorithm | Common Distance Metric |
+|-----------|------------------------|
+| K-Means | Euclidean |
+| K-Nearest Neighbors (KNN) | Euclidean, Manhattan, Minkowski |
+| Hierarchical Clustering | Euclidean, Manhattan |
+| DBSCAN | Euclidean, Manhattan, Minkowski |
+| Gaussian Mixture Model (GMM) | Mahalanobis (internally considers covariance) |
+| Recommendation Systems | Cosine, Jaccard |
+| Text Mining | Cosine |
+| Binary Classification | Hamming |
+
+---
+
+# Advantages and Disadvantages
+
+| Distance Metric | Advantages | Disadvantages |
+|-----------------|------------|---------------|
+| Euclidean | Simple and widely used | Sensitive to scale and outliers |
+| Manhattan | Robust to some outliers | Less suitable for diagonal distances |
+| Minkowski | Flexible (generalizes Euclidean and Manhattan) | Choice of parameter **p** affects results |
+| Chebyshev | Captures maximum deviation | Ignores smaller differences |
+| Cosine | Works well for high-dimensional sparse data | Ignores magnitude |
+| Hamming | Ideal for binary and categorical data | Not suitable for continuous data |
+| Jaccard | Measures similarity between sets | Not suitable for numerical data |
+
+---
+
+# Summary
+
+| Metric | Best Used For |
+|--------|---------------|
+| Euclidean | Continuous numerical data |
+| Manhattan | Grid-based or high-dimensional numerical data |
+| Minkowski | General numerical distance |
+| Chebyshev | Maximum coordinate difference |
+| Cosine | Text similarity and document comparison |
+| Hamming | Binary and categorical data |
+| Jaccard | Set and binary similarity |
