@@ -735,3 +735,263 @@ The curse of dimensionality mainly affects algorithms that rely on distance calc
 # Key Takeaway
 
 The **Curse of Dimensionality** occurs when the number of features becomes very large, causing data to become sparse and making it difficult for machine learning algorithms to learn meaningful patterns. Reducing the number of features through **feature selection** or **dimensionality reduction** is one of the most effective ways to overcome this problem.
+
+
+----
+# Dimensionality Reduction Techniques
+
+Dimensionality Reduction is the process of reducing the number of input features (dimensions) while preserving as much important information as possible.
+
+It helps improve model performance, reduce computational cost, minimize overfitting, and overcome the **Curse of Dimensionality**.
+
+---
+
+# Why Dimensionality Reduction?
+
+High-dimensional datasets often contain:
+
+- Redundant features
+- Irrelevant features
+- Highly correlated features
+- Noisy data
+
+Reducing the number of features makes machine learning models:
+
+- Faster
+- Simpler
+- More accurate
+- Easier to visualize
+
+---
+
+# Types of Dimensionality Reduction
+
+There are two main approaches:
+
+## 1. Feature Selection
+
+Feature Selection selects the **most important features** from the original dataset while removing irrelevant or redundant features.
+
+The original features remain unchanged.
+
+### Example
+
+Original Features
+
+```text
+Age
+Income
+Salary
+Address
+Phone Number
+Customer ID
+```
+
+Selected Features
+
+```text
+Age
+Income
+Salary
+```
+
+### Common Feature Selection Techniques
+
+- Filter Methods
+- Wrapper Methods
+- Embedded Methods
+
+---
+
+### A. Filter Methods
+
+Filter methods evaluate features independently of the machine learning model.
+
+#### Techniques
+
+- Correlation Coefficient
+- Chi-Square Test
+- Information Gain
+- Mutual Information
+- ANOVA F-Test
+- Variance Threshold
+
+### Advantages
+
+- Fast
+- Easy to implement
+- Model independent
+
+---
+
+### B. Wrapper Methods
+
+Wrapper methods evaluate subsets of features by training a machine learning model.
+
+#### Techniques
+
+- Forward Selection
+- Backward Elimination
+- Recursive Feature Elimination (RFE)
+
+### Advantages
+
+- Higher accuracy
+- Finds the best feature combination
+
+### Disadvantages
+
+- Computationally expensive
+
+---
+
+### C. Embedded Methods
+
+Embedded methods perform feature selection during model training.
+
+#### Techniques
+
+- Lasso Regression (L1)
+- Ridge Regression (L2)
+- Elastic Net
+- Decision Trees
+- Random Forest Feature Importance
+
+### Advantages
+
+- Efficient
+- Reduces overfitting
+
+---
+
+# 2. Feature Extraction
+
+Feature Extraction creates **new features** by combining or transforming the original features.
+
+The original features are replaced by new transformed features.
+
+### Example
+
+Original Features
+
+```text
+Height
+Weight
+Age
+Income
+```
+
+After PCA
+
+```text
+PC1
+PC2
+```
+
+---
+
+## Common Feature Extraction Techniques
+
+### 1. Principal Component Analysis (PCA)
+
+- Linear dimensionality reduction technique.
+- Creates orthogonal (uncorrelated) principal components.
+- Preserves maximum variance.
+
+### Applications
+
+- Data Compression
+- Visualization
+- Noise Reduction
+
+---
+
+### 2. Linear Discriminant Analysis (LDA)
+
+- Supervised dimensionality reduction technique.
+- Maximizes separation between classes.
+
+### Applications
+
+- Face Recognition
+- Classification
+
+---
+
+### 3. t-SNE (t-Distributed Stochastic Neighbor Embedding)
+
+- Non-linear dimensionality reduction.
+- Preserves local structure.
+- Mainly used for visualization.
+
+### Applications
+
+- Data Visualization
+- Cluster Visualization
+
+---
+
+### 4. UMAP (Uniform Manifold Approximation and Projection)
+
+- Faster than t-SNE.
+- Preserves both local and global data structure.
+
+### Applications
+
+- Large Dataset Visualization
+- Clustering
+
+---
+
+### 5. Autoencoders
+
+- Neural network-based dimensionality reduction.
+- Learns compressed representations automatically.
+
+### Applications
+
+- Image Compression
+- Anomaly Detection
+- Feature Learning
+
+---
+
+# Feature Selection vs Feature Extraction
+
+| Feature Selection | Feature Extraction |
+|-------------------|--------------------|
+| Selects existing features | Creates new features |
+| Original features remain | Original features are transformed |
+| Easier to interpret | Less interpretable |
+| Faster | More computationally expensive |
+| Examples: RFE, Lasso, Chi-Square | Examples: PCA, LDA, t-SNE, UMAP, Autoencoders |
+
+---
+
+# Comparison of Dimensionality Reduction Techniques
+
+| Technique | Type | Supervised | Preserves Original Features | Best For |
+|-----------|------|------------|-----------------------------|----------|
+| Correlation | Feature Selection | No | ✅ Yes | Remove correlated features |
+| Chi-Square | Feature Selection | Yes | ✅ Yes | Classification |
+| Recursive Feature Elimination (RFE) | Feature Selection | Yes | ✅ Yes | Feature ranking |
+| Lasso Regression | Feature Selection | Yes | ✅ Yes | Sparse feature selection |
+| PCA | Feature Extraction | No | ❌ No | General dimensionality reduction |
+| LDA | Feature Extraction | Yes | ❌ No | Classification |
+| t-SNE | Feature Extraction | No | ❌ No | Data visualization |
+| UMAP | Feature Extraction | No | ❌ No | Large datasets |
+| Autoencoder | Feature Extraction | No | ❌ No | Deep learning applications |
+
+---
+
+# Summary
+
+| Method | Description |
+|---------|-------------|
+| Feature Selection | Selects the most relevant original features. |
+| Feature Extraction | Creates new features from the original data. |
+| PCA | Reduces dimensions while preserving variance. |
+| LDA | Reduces dimensions while maximizing class separation. |
+| t-SNE | Visualizes high-dimensional data. |
+| UMAP | Fast visualization and dimensionality reduction. |
+| Autoencoder | Learns compressed feature representations using neural networks. |
