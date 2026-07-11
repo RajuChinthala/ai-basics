@@ -464,3 +464,7 @@ Jaccard Distance = 1 - Jaccard Similarity
 | Cosine | Text similarity and document comparison |
 | Hamming | Binary and categorical data |
 | Jaccard | Set and binary similarity |
+
+------
+<img width="1060" height="430" alt="image" src="https://github.com/user-attachments/assets/2d9c775d-4b50-48b6-bfef-17d1991fae2f" />
+
