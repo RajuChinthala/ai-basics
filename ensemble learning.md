@@ -22,6 +22,13 @@ Ensemble learning helps by:
 - Increasing model stability
 - Making predictions more robust
 
+Super power of Ensemble Learning:
+- Boosting Accuracy
+- Enhances Reliability
+- Imporves trust - SHAP & Feature Importance
+- Blends strengths - Combining predictions by voting
+
+
 ---
 
 # How Ensemble Learning Works
@@ -61,7 +68,7 @@ Combine Predictions
 There are three main types of ensemble learning:
 
 1. Bagging (Bootstrap Aggregating)
-2. Boosting
+2. Boosting Accuracy
 3. Stacking
 
 ---
