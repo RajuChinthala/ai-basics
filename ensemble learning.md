@@ -167,6 +167,10 @@ Meta Model:
 - More complex to implement.
 - Higher training time.
 
+### Types
+- Linear
+- Non-liner
+
 ---
 
 # Comparison of Ensemble Learning Techniques
