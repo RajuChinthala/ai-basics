@@ -109,3 +109,296 @@ Softmax is a special activation function used almost exclusively in the **final 
 *   **In the Hidden Layers:** Default to **ReLU**. If you notice neurons are dying, try variations like **Leaky ReLU** (which allows a tiny positive gradient for negative numbers).
 *   **In the Output Layer (Binary Classification):** Use **Sigmoid**.
 *   **In the Output Layer (Multi-class Classification):** Use **Softmax**.
+
+
+---
+
+# Neural Network Optimization Techniques
+
+Optimization algorithms are used to minimize the loss function by updating the weights of the neural network. Over time, newer optimizers were developed to overcome the limitations of previous ones.
+
+---
+
+# Evolution of Optimizers
+
+Gradient Descent
+    ↓
+Stochastic Gradient Descent (SGD)
+    ↓
+Mini-Batch Gradient Descent
+    ↓
+Momentum
+    ↓
+Nesterov Accelerated Gradient (NAG)
+    ↓
+Adagrad
+    ↓
+Adadelta
+    ↓
+RMSprop
+    ↓
+Adam
+    ↓
+AdamW
+    ↓
+Nadam
+
+---
+
+# 1. Batch Gradient Descent
+
+### How it works
+- Uses the **entire training dataset** to compute the gradient.
+- Updates weights **once per epoch**.
+
+### Advantages
+- Stable and accurate gradient.
+- Smooth convergence.
+
+### Problems
+- Very slow for large datasets.
+- Requires high memory.
+- Must wait until all samples are processed before updating weights.
+
+### Why the next optimizer?
+**Stochastic Gradient Descent (SGD)** was introduced to make updates much faster by updating after each training sample.
+
+---
+
+# 2. Stochastic Gradient Descent (SGD)
+
+### How it works
+- Uses **one training sample** at a time.
+- Updates weights after every sample.
+
+### Advantages
+- Fast learning.
+- Requires very little memory.
+- Can escape local minima because updates are noisy.
+
+### Problems
+- Loss fluctuates a lot.
+- Takes a zig-zag path toward the minimum.
+- Doesn't efficiently utilize GPU parallelism.
+
+### Why the next optimizer?
+**Mini-Batch Gradient Descent** provides a balance between speed and stability.
+
+---
+
+# 3. Mini-Batch Gradient Descent
+
+### How it works
+- Uses a small batch (32, 64, 128, etc.).
+- Updates weights after each batch.
+
+### Advantages
+- Faster than Batch GD.
+- More stable than SGD.
+- Efficient on GPUs.
+
+### Problems
+- Still oscillates while moving toward the minimum.
+- Can be slow in narrow valleys.
+
+### Why the next optimizer?
+**Momentum** helps reduce oscillations and speeds up convergence.
+
+---
+
+# 4. Momentum
+
+### How it works
+- Remembers previous weight updates.
+- Adds a fraction of the previous update to the current one.
+
+### Advantages
+- Faster convergence.
+- Reduces oscillations.
+- Works well in valleys.
+
+### Problems
+- Can overshoot the optimum.
+- Doesn't know what's ahead.
+
+### Why the next optimizer?
+**Nesterov Accelerated Gradient (NAG)** looks ahead before updating weights.
+
+---
+
+# 5. Nesterov Accelerated Gradient (NAG)
+
+### How it works
+- Computes the gradient after moving in the momentum direction.
+
+### Advantages
+- More accurate updates.
+- Reduces overshooting.
+- Faster convergence than Momentum.
+
+### Problems
+- Uses the same learning rate for every parameter.
+- Doesn't adapt to individual parameters.
+
+### Why the next optimizer?
+**Adagrad** introduces adaptive learning rates.
+
+---
+
+# 6. Adagrad
+
+### How it works
+- Gives each parameter its own learning rate.
+- Frequently updated parameters receive smaller learning rates.
+- Rarely updated parameters receive larger learning rates.
+
+### Advantages
+- Excellent for sparse data.
+- Good for NLP and recommendation systems.
+
+### Problems
+- Learning rate keeps decreasing.
+- Eventually becomes too small and learning almost stops.
+
+### Why the next optimizer?
+**Adadelta** prevents the learning rate from shrinking indefinitely.
+
+---
+
+# 7. Adadelta
+
+### How it works
+- Uses only recent gradients instead of all historical gradients.
+- Automatically adapts learning rates.
+
+### Advantages
+- Prevents learning rate from becoming extremely small.
+- No manual learning rate required.
+
+### Problems
+- Can converge slower than newer optimizers.
+- Not as effective as RMSprop in many applications.
+
+### Why the next optimizer?
+**RMSprop** improves adaptive learning using exponential moving averages.
+
+---
+
+# 8. RMSprop
+
+### How it works
+- Maintains an exponentially weighted average of squared gradients.
+- Adapts the learning rate for each parameter.
+
+### Advantages
+- Faster convergence.
+- Excellent for RNNs.
+- Prevents exploding updates.
+
+### Problems
+- Doesn't use momentum.
+- May converge slower than Adam.
+
+### Why the next optimizer?
+**Adam** combines the strengths of Momentum and RMSprop.
+
+---
+
+# 9. Adam (Adaptive Moment Estimation)
+
+### How it works
+- Combines:
+  - Momentum (first moment)
+  - RMSprop (second moment)
+
+### Advantages
+- Fast convergence.
+- Adaptive learning rates.
+- Handles noisy gradients.
+- Default optimizer for most deep learning tasks.
+
+### Problems
+- Can sometimes generalize worse than SGD.
+- Weight decay implementation isn't ideal.
+
+### Why the next optimizer?
+**AdamW** fixes Adam's weight decay problem.
+
+---
+
+# 10. AdamW
+
+### How it works
+- Separates weight decay from gradient updates.
+
+### Advantages
+- Better regularization.
+- Better generalization.
+- Standard optimizer for Transformer models (BERT, GPT, ViT).
+
+### Problems
+- Slightly more computation than Adam.
+
+### Why the next optimizer?
+**Nadam** combines Adam with Nesterov Momentum.
+
+---
+
+# 11. Nadam
+
+### How it works
+- Adam + Nesterov Momentum.
+
+### Advantages
+- Faster convergence.
+- More accurate updates.
+- Performs well on deep neural networks.
+
+### Problems
+- Slightly more computationally expensive.
+
+---
+
+# Comparison Table
+
+| Optimizer | Main Idea | Solves Which Problem? |
+|-----------|-----------|-----------------------|
+| Batch GD | Entire dataset | Baseline algorithm |
+| SGD | One sample update | Batch GD is slow |
+| Mini-Batch | Small batches | SGD is noisy |
+| Momentum | Uses previous updates | Mini-Batch oscillates |
+| NAG | Look-ahead gradient | Momentum overshoots |
+| Adagrad | Adaptive learning rate | Same LR for all parameters |
+| Adadelta | Recent gradients only | Adagrad LR becomes too small |
+| RMSprop | Moving average of gradients | Improves Adadelta |
+| Adam | Momentum + RMSprop | Faster convergence |
+| AdamW | Better weight decay | Adam regularization issue |
+| Nadam | Adam + Nesterov | Faster and more accurate updates |
+
+---
+
+# Which Optimizer Should I Use?
+
+| Use Case | Recommended Optimizer |
+|----------|------------------------|
+| Beginner | Adam |
+| CNN (Image Classification) | SGD + Momentum |
+| Transformers (BERT, GPT, ViT) | AdamW |
+| RNN / LSTM | RMSprop |
+| Sparse Data / NLP | Adagrad |
+
+---
+
+# Interview Summary
+
+- **Batch Gradient Descent** → Slow because it uses the full dataset.
+- **SGD** → Faster but noisy.
+- **Mini-Batch** → Best balance of speed and stability.
+- **Momentum** → Reduces oscillations.
+- **NAG** → Looks ahead before updating.
+- **Adagrad** → Adaptive learning rates.
+- **Adadelta** → Prevents learning rate decay.
+- **RMSprop** → Better adaptive learning.
+- **Adam** → Momentum + RMSprop (most popular).
+- **AdamW** → Better weight decay.
+- **Nadam** → Adam + Nesterov.
