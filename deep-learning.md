@@ -402,3 +402,436 @@ Nadam
 - **Adam** → Momentum + RMSprop (most popular).
 - **AdamW** → Better weight decay.
 - **Nadam** → Adam + Nesterov.
+
+---
+# formulas
+# Neural Network Optimization Techniques with Formulas
+
+Let:
+- `w` = weights
+- `L` = Loss function
+- `η` = Learning Rate
+- `∇L(w)` = Gradient of Loss
+- `g_t` = Gradient at iteration t
+- `v_t` = Momentum
+- `β` = Momentum coefficient
+- `ε` = Small constant (1e-8)
+
+---
+
+# 1. Batch Gradient Descent (GD)
+
+## Formula
+
+w = w - η ∇L(w)
+
+### Explanation
+- Compute gradient using the **entire dataset**.
+- Update weights once after processing all samples.
+
+### Problem
+- Slow for large datasets.
+- High memory usage.
+
+### Next Optimizer
+➡ **SGD** updates weights after every sample.
+
+---
+
+# 2. Stochastic Gradient Descent (SGD)
+
+## Formula
+
+w = w - η ∇L(w_i)
+
+where `w_i` is the gradient from **one training sample**.
+
+### Explanation
+Instead of computing
+
+∇L(all samples)
+
+it computes
+
+∇L(single sample)
+
+### Problem Solved
+✔ Faster updates
+
+### New Problem
+❌ High variance (zig-zag movement).
+
+### Next Optimizer
+➡ Mini-Batch Gradient Descent
+
+---
+
+# 3. Mini-Batch Gradient Descent
+
+## Formula
+
+w = w - η (1/B) Σ ∇L(w_i)
+
+where
+
+- B = Batch Size
+
+### Explanation
+
+Instead of
+
+Entire Dataset
+
+↓
+
+Single Sample
+
+↓
+
+Mini Batch
+
+### Problem Solved
+
+✔ Faster than Batch GD
+
+✔ Less noisy than SGD
+
+### New Problem
+
+❌ Oscillates near minima.
+
+### Next Optimizer
+
+➡ Momentum
+
+---
+
+# 4. Momentum
+
+## Formula
+
+v_t = βv_(t-1) + ηg_t
+
+w = w - v_t
+
+### Explanation
+
+Uses previous velocity.
+
+Instead of
+
+Current Gradient
+
+↓
+
+Previous Gradient + Current Gradient
+
+Like pushing a ball downhill.
+
+### Problem Solved
+
+✔ Reduces oscillation
+
+✔ Faster convergence
+
+### New Problem
+
+❌ Can overshoot minimum.
+
+### Next Optimizer
+
+➡ Nesterov Accelerated Gradient (NAG)
+
+---
+
+# 5. Nesterov Accelerated Gradient (NAG)
+
+## Formula
+
+Look ahead first
+
+g = ∇L(w - βv)
+
+v = βv + ηg
+
+w = w - v
+
+### Explanation
+
+Momentum says
+
+Move
+
+Then Compute Gradient
+
+NAG says
+
+Look Ahead
+
+↓
+
+Compute Gradient
+
+↓
+
+Update
+
+### Problem Solved
+
+✔ Less overshooting
+
+✔ More accurate direction
+
+### New Problem
+
+❌ Same learning rate for all parameters.
+
+### Next Optimizer
+
+➡ Adagrad
+
+---
+
+# 6. Adagrad
+
+## Formula
+
+r_t = r_(t-1) + g_t²
+
+w = w - (η / √(r_t + ε)) g_t
+
+### Explanation
+
+Each parameter gets its own learning rate.
+
+Frequently updated parameters
+
+↓
+
+Smaller Learning Rate
+
+Rarely updated parameters
+
+↓
+
+Larger Learning Rate
+
+### Problem Solved
+
+✔ Excellent for sparse data
+
+### New Problem
+
+❌ Learning rate keeps shrinking.
+
+Eventually
+
+η ≈ 0
+
+Training almost stops.
+
+### Next Optimizer
+
+➡ Adadelta
+
+---
+
+# 7. Adadelta
+
+## Formula
+
+E[g²]_t = ρE[g²]_(t-1) + (1-ρ)g_t²
+
+Update
+
+Δw = -(RMS(Δw) / RMS(g)) g
+
+### Explanation
+
+Instead of storing all gradients,
+
+stores only recent gradients.
+
+### Problem Solved
+
+✔ Learning rate never becomes zero.
+
+### New Problem
+
+❌ Still not the fastest optimizer.
+
+### Next Optimizer
+
+➡ RMSprop
+
+---
+
+# 8. RMSprop
+
+## Formula
+
+E[g²]_t = βE[g²]_(t-1) + (1-β)g²
+
+w = w - (η / √(E[g²]_t + ε)) g
+
+### Explanation
+
+Uses exponential moving average instead of storing all gradients.
+
+### Problem Solved
+
+✔ Stable learning rate
+
+✔ Faster convergence
+
+### New Problem
+
+❌ Doesn't include Momentum.
+
+### Next Optimizer
+
+➡ Adam
+
+---
+
+# 9. Adam (Adaptive Moment Estimation)
+
+## Formula
+
+First Moment
+
+m_t = β₁m_(t-1) + (1-β₁)g_t
+
+Second Moment
+
+v_t = β₂v_(t-1) + (1-β₂)g_t²
+
+Bias Correction
+
+m̂ = m_t / (1-β₁ᵗ)
+
+v̂ = v_t / (1-β₂ᵗ)
+
+Weight Update
+
+w = w - η (m̂ / (√v̂ + ε))
+
+### Explanation
+
+Adam combines
+
+Momentum
+
++
+
+RMSprop
+
+Momentum
+
+↓
+
+Direction
+
+RMSprop
+
+↓
+
+Adaptive Learning Rate
+
+### Problem Solved
+
+✔ Fast
+
+✔ Stable
+
+✔ Adaptive
+
+✔ Most widely used optimizer
+
+### New Problem
+
+❌ Weight decay is coupled with gradients.
+
+### Next Optimizer
+
+➡ AdamW
+
+---
+
+# 10. AdamW
+
+## Formula
+
+w = w - η (m̂ / (√v̂ + ε)) - ηλw
+
+where
+
+λ = Weight Decay
+
+### Explanation
+
+Adam mixes
+
+Gradient Update
+
++
+
+Regularization
+
+AdamW separates them.
+
+### Problem Solved
+
+✔ Better regularization
+
+✔ Better generalization
+
+✔ Used in BERT, GPT, ViT
+
+### Next Optimizer
+
+➡ Nadam
+
+---
+
+# 11. Nadam
+
+## Formula
+
+Adam + Nesterov Momentum
+
+Update
+
+Uses
+
+Nesterov Momentum
+
++
+
+Adam Adaptive Learning Rate
+
+### Problem Solved
+
+✔ Even faster convergence
+
+✔ Better prediction direction
+
+✔ Often improves Adam slightly
+
+---
+
+# Summary
+
+| Optimizer | Formula Idea | Solves |
+|-----------|-------------|--------|
+| GD | w = w − η∇L | Basic optimization |
+| SGD | One sample gradient | Faster than GD |
+| Mini-Batch | Batch gradient | Stable + Fast |
+| Momentum | Previous velocity | Removes oscillation |
+| NAG | Look-ahead gradient | Reduces overshooting |
+| Adagrad | Adaptive LR | Sparse data |
+| Adadelta | Recent gradients | Prevents LR decay |
+| RMSprop | EMA of gradients | Stable adaptive LR |
+| Adam | Momentum + RMSprop | Fastest general optimizer |
+| AdamW | Adam + Weight Decay | Better regularization |
+| Nadam | Adam + NAG | Faster convergence |
