@@ -835,3 +835,471 @@ Adam Adaptive Learning Rate
 | Adam | Momentum + RMSprop | Fastest general optimizer |
 | AdamW | Adam + Weight Decay | Better regularization |
 | Nadam | Adam + NAG | Faster convergence |
+
+
+------
+# Learning Rate Scheduling in Neural Networks
+
+## What is Learning Rate Scheduling?
+
+A **Learning Rate Scheduler** automatically changes the learning rate during training instead of keeping it constant.
+
+**Why?**
+
+- Large learning rate → Faster learning initially.
+- Small learning rate → Fine-tunes the model near the optimum.
+- Prevents overshooting the minimum.
+- Helps achieve faster and more stable convergence.
+
+---
+
+## Why Not Use a Constant Learning Rate?
+
+Example:
+
+Learning Rate = 0.1
+
+```text
+Start -----------------------------> Minimum
+
+Large steps
+
+Near minimum
+
+Still taking large steps
+
+Overshoots optimum
+```
+
+Instead,
+
+```text
+Start
+
+Large Steps
+
+↓
+
+Medium Steps
+
+↓
+
+Small Steps
+
+↓
+
+Converges smoothly
+```
+
+---
+
+# 1. Time-Based Decay
+
+## Formula
+
+\[
+\eta_t=\frac{\eta_0}{1+k t}
+\]
+
+where
+
+- η₀ = Initial Learning Rate
+- k = Decay Rate
+- t = Epoch Number
+
+### Example
+
+Initial LR = 0.1
+
+Decay = 0.01
+
+| Epoch | Learning Rate |
+|-------:|--------------:|
+| 0 | 0.100 |
+| 10 | 0.0909 |
+| 20 | 0.0833 |
+| 50 | 0.0667 |
+
+### Advantages
+
+- Simple
+- Smooth reduction
+
+### Disadvantages
+
+- Decays continuously even if the model is still improving.
+
+---
+
+# 2. Step Decay
+
+## Formula
+
+\[
+\eta_t=\eta_0 \times \gamma^{\left\lfloor t/s\right\rfloor}
+\]
+
+where
+
+- γ = Decay Factor (e.g., 0.1)
+- s = Step Size
+
+### Example
+
+Initial LR = 0.1
+
+Every 10 epochs:
+
+```text
+Epoch 1–10
+
+0.1
+
+↓
+
+Epoch 11–20
+
+0.01
+
+↓
+
+Epoch 21–30
+
+0.001
+```
+
+### Advantages
+
+- Very popular
+- Easy to configure
+
+### Disadvantages
+
+- Sudden jumps in learning rate.
+
+---
+
+# 3. Exponential Decay
+
+## Formula
+
+\[
+\eta_t=\eta_0e^{-kt}
+\]
+
+where
+
+k = decay constant
+
+### Example
+
+```text
+Epoch
+
+0
+
+↓
+
+5
+
+↓
+
+10
+
+↓
+
+15
+
+Learning Rate
+
+0.1
+
+↓
+
+0.06
+
+↓
+
+0.036
+
+↓
+
+0.022
+```
+
+### Advantages
+
+- Smooth decrease
+- Faster convergence
+
+### Disadvantages
+
+- Can become too small quickly.
+
+---
+
+# 4. Polynomial Decay
+
+## Formula
+
+\[
+\eta_t=\eta_0\left(1-\frac{t}{T}\right)^p
+\]
+
+where
+
+- T = Total Epochs
+- p = Power
+
+### Advantages
+
+- Controlled decay
+- Widely used in semantic segmentation
+
+### Disadvantages
+
+- Must know total training epochs.
+
+---
+
+# 5. Cosine Annealing
+
+## Formula
+
+\[
+\eta_t=\eta_{min}
++\frac12(\eta_{max}-\eta_{min})
+\left(1+\cos\left(\frac{\pi t}{T}\right)\right)
+\]
+
+### Learning Rate Curve
+
+```text
+LR
+
+0.1
+
+╭────────╮
+
+│        ╲
+
+│         ╲
+
+│          ╲
+
+0────────────── Epoch
+```
+
+### Advantages
+
+- Smooth decay
+- Excellent for deep learning
+- Helps escape local minima
+
+### Used In
+
+- ResNet
+- Vision Transformers
+- BERT
+- GPT
+
+---
+
+# 6. Cosine Annealing with Warm Restarts (SGDR)
+
+Instead of decreasing forever,
+
+restart the learning rate.
+
+```text
+LR
+
+╭──────╮
+
+│      ╲
+
+│       ╲
+
+╰╮
+
+╰──────╮
+
+╰──────╮
+```
+
+### Advantages
+
+- Escapes local minima
+- Better generalization
+
+---
+
+# 7. Reduce Learning Rate on Plateau
+
+### Rule
+
+If
+
+Validation Loss
+
+doesn't improve
+
+for N epochs
+
+↓
+
+Reduce Learning Rate
+
+Example
+
+```text
+Validation Loss
+
+0.5
+
+↓
+
+0.4
+
+↓
+
+0.39
+
+↓
+
+0.39
+
+↓
+
+0.39
+
+↓
+
+Learning Rate
+
+0.001
+
+↓
+
+0.0001
+```
+
+### Advantages
+
+- Automatically adjusts learning rate
+- Very common in TensorFlow and PyTorch
+
+---
+
+# 8. Cyclical Learning Rate (CLR)
+
+Instead of only decreasing,
+
+the learning rate oscillates.
+
+```text
+LR
+
+0.01
+
+╱╲
+
+╱  ╲
+
+╱    ╲
+
+╱      ╲
+```
+
+### Advantages
+
+- Escapes saddle points
+- Faster convergence
+
+---
+
+# 9. One Cycle Learning Rate
+
+Most popular scheduler today.
+
+Pattern
+
+```text
+LR
+
+Increase
+
+↓
+
+Peak
+
+↓
+
+Gradually Decrease
+
+↓
+
+Very Small LR
+```
+
+### Advantages
+
+- Very fast convergence
+- Better generalization
+- Used in FastAI and PyTorch
+
+---
+
+# Comparison
+
+| Scheduler | Formula | Best For |
+|------------|---------|----------|
+| Time Decay | η/(1+kt) | Simple problems |
+| Step Decay | ηγ^(epoch/step) | CNN training |
+| Exponential | ηe^(-kt) | Smooth decay |
+| Polynomial | η(1−t/T)^p | Segmentation |
+| Cosine Annealing | Cosine curve | Modern deep learning |
+| Warm Restarts | Cosine + restart | Long training |
+| Reduce on Plateau | Validation based | General-purpose training |
+| Cyclic LR | Oscillating LR | Escaping saddle points |
+| One Cycle LR | Increase → Decrease | State-of-the-art training |
+
+---
+
+# Which Scheduler Should You Use?
+
+| Scenario | Recommended Scheduler |
+|----------|-----------------------|
+| Beginner | Step Decay |
+| CNN Training | Step Decay / Cosine Annealing |
+| Transformer Models | Cosine Annealing |
+| Unknown Dataset | ReduceLROnPlateau |
+| Fast Training | OneCycleLR |
+| Very Deep Networks | Cosine Annealing + Warm Restarts |
+
+---
+
+# Interview Questions
+
+### Why use a Learning Rate Scheduler?
+
+- Faster convergence
+- Prevents overshooting
+- Better accuracy
+- Helps escape poor local minima
+- Improves generalization
+
+### Most Popular Learning Rate Schedulers
+
+1. StepLR
+2. ReduceLROnPlateau
+3. CosineAnnealingLR
+4. CosineAnnealingWarmRestarts
+5. OneCycleLR
+
+### Used in Practice
+
+- **ResNet:** Step Decay, Cosine Annealing
+- **BERT:** Linear Decay + Warmup
+- **GPT:** Cosine Decay + Warmup
+- **Vision Transformers (ViT):** Cosine Annealing
