@@ -1361,6 +1361,7 @@ Clean
    ↓
 Tokenize
    ↓
+   
 Normalize
    ↓
 Represent
@@ -1377,5 +1378,18 @@ Predict
 ## In Short
 
 > An **NLP Pipeline** converts **raw human language → processed text → numerical representation → NLP model → useful output**.
+
+--Final pipeline to be refer
+# NLP Pipeline
+
+Raw Text
+→ Text Cleaning
+→ Normalization
+→ Tokenization
+→ Stop Word Removal
+→ Stemming / Lemmatization
+→ Feature Extraction
+→ Machine Learning / Deep Learning Model
+→ Output
 
 
