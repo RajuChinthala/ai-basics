@@ -726,3 +726,152 @@ Large Language Models
 ```
 
 Modern NLP systems increasingly use **transformers and LLMs** because they can understand contextual relationships and perform many language tasks within a single model.
+
+
+----
+# Types of Ambiguity in NLP
+
+## What is Ambiguity?
+
+**Ambiguity** in Natural Language Processing (NLP) occurs when a word, phrase, or sentence can have **more than one possible meaning or interpretation**.
+
+Ambiguity is one of the major challenges in NLP because computers must determine the correct meaning using context.
+
+---
+
+## 1. Lexical Ambiguity
+
+**Lexical ambiguity** occurs when a **single word has multiple meanings**.
+
+### Example
+
+> "He went to the bank."
+
+The word **bank** can mean:
+
+- A financial institution
+- The side of a river
+
+The NLP system must use the surrounding context to determine the intended meaning.
+
+---
+
+## 2. Syntactic Ambiguity
+
+**Syntactic ambiguity** occurs when a sentence can have **more than one grammatical structure**.
+
+It is also known as **structural ambiguity**.
+
+### Example
+
+> "I saw the man with the telescope."
+
+Possible meanings:
+
+1. I used a telescope to see the man.
+2. I saw a man who had a telescope.
+
+---
+
+## 3. Semantic Ambiguity
+
+**Semantic ambiguity** occurs when a sentence has more than one possible **meaning or interpretation**, even when its grammatical structure is understood.
+
+### Example
+
+> "Every student read a book."
+
+Possible meanings:
+
+1. All students read the same book.
+2. Each student read a different book.
+
+---
+
+## 4. Pragmatic Ambiguity
+
+**Pragmatic ambiguity** occurs when the intended meaning depends on **context, situation, or speaker intention**.
+
+### Example
+
+> "Can you open the door?"
+
+Possible interpretations:
+
+- Literal meaning: Asking whether the person is capable of opening the door.
+- Intended meaning: Requesting the person to open the door.
+
+NLP systems require contextual and real-world knowledge to understand such sentences.
+
+---
+
+## 5. Referential Ambiguity
+
+**Referential ambiguity** occurs when it is unclear **which person, object, or entity a word refers to**.
+
+### Example
+
+> "John told Mike that he won."
+
+The word **he** could refer to:
+
+- John
+- Mike
+
+Resolving this type of ambiguity is important in **coreference resolution**.
+
+---
+
+## 6. Morphological Ambiguity
+
+**Morphological ambiguity** occurs when a word or expression can have **multiple grammatical or morphological interpretations**.
+
+### Example
+
+> "Visiting relatives can be boring."
+
+Possible meanings:
+
+1. The activity of visiting relatives can be boring.
+2. Relatives who are visiting can be boring.
+
+---
+
+## 7. Scope Ambiguity
+
+**Scope ambiguity** occurs when the scope of **negation, quantifiers, or other operators** can be interpreted differently.
+
+### Example
+
+> "All students didn't pass."
+
+Possible meanings:
+
+1. No students passed.
+2. Not all students passed.
+
+---
+
+## Summary
+
+| Type | Description | Example |
+|---|---|---|
+| **Lexical** | A word has multiple meanings | "bank" |
+| **Syntactic** | A sentence has multiple grammatical structures | "I saw the man with the telescope." |
+| **Semantic** | A sentence has multiple possible meanings | "Every student read a book." |
+| **Pragmatic** | Meaning depends on context or intention | "Can you open the door?" |
+| **Referential** | Unclear what or whom a word refers to | "John told Mike that he won." |
+| **Morphological** | A word/expression has multiple grammatical interpretations | "Visiting relatives can be boring." |
+| **Scope** | Scope of negation or quantifiers is unclear | "All students didn't pass." |
+
+---
+
+## Easy Way to Remember
+
+- **Lexical** → Word
+- **Syntactic** → Structure
+- **Semantic** → Meaning
+- **Pragmatic** → Context
+- **Referential** → Who/What
+- **Morphological** → Word Form
+- **Scope** → Range of Meaning
