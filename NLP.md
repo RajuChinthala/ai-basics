@@ -875,3 +875,59 @@ Possible meanings:
 - **Referential** → Who/What
 - **Morphological** → Word Form
 - **Scope** → Range of Meaning
+
+
+-----
+
+# NLP Pipeline
+
+An **NLP Pipeline** is a sequence of steps used to process raw human language and convert it into a form that a machine can understand and analyze.
+
+## Steps in NLP Pipeline
+
+1. **Data Collection**
+   - Collect text from documents, websites, reviews, social media, etc.
+
+2. **Text Cleaning**
+   - Remove unnecessary characters, HTML tags, extra spaces, URLs, etc.
+
+3. **Tokenization**
+   - Split text into smaller units called tokens.
+   - Example: `I love NLP` → `["I", "love", "NLP"]`
+
+4. **Text Normalization**
+   - Convert text into a consistent form.
+   - Lowercasing
+   - Stop-word removal
+   - Stemming
+   - Lemmatization
+
+5. **Feature Extraction / Text Representation**
+   - Convert text into numerical form.
+   - Bag of Words (BoW)
+   - TF-IDF
+   - Word2Vec
+   - Embeddings
+
+6. **Model Training**
+   - Train a Machine Learning or Deep Learning model using the processed data.
+
+7. **Evaluation**
+   - Evaluate performance using metrics such as:
+     - Accuracy
+     - Precision
+     - Recall
+     - F1-score
+
+8. **Prediction / Output**
+   - Use the trained model to produce the final result.
+
+## NLP Pipeline Flow
+
+Raw Text → Cleaning → Tokenization → Normalization → Feature Extraction → Model Training → Evaluation → Prediction
+
+## Modern NLP Pipeline
+
+Raw Text → Tokenizer → Tokens → Embeddings → Transformer Model → Output
+
+
