@@ -121,49 +121,78 @@ Unsupervised Learnin
   - Dimensionality Reduction
 
 -----------------------------------------------
+-----------------------------------------------
+
+# What is AI?
+
+Anything which mimics humans is called AI.
+
+---
+
+# What is Machine Learning?
+
+- Predictive analytics
+- Humidity / Rainfall / Temperature / No. of phone calls → Crop yield
+- Feature selection is a manual process
+- 2D data → Excel, tables
+- 
+---
+
+# What is Deep Learning?
+
+- Deep Learning is a subset of ML
+- Goal is predictive analytics
+- Works with unstructured data → not in 2D
+- Feature selection is automatic in Deep Learning
+- GPU
+
+
 # What is Natural Language Processing
 
 Used by humans to communicate.
 
-**Example:**  
-Book me a flight for Delhi tomorrow.
+**Example:** Book me a flight for Delhi tomorrow.
 
-Humans understand:
-
+Humans:
 - Meaning
 - Context
 - Intentions
 - Emotions
 - Relationships
 
-NLP is a field of AI that enables computers to **process, analyze, understand, and generate human language**.
+# NLP is a field of AI that enables computers to process, analyse, understand, and generate human language.
+- Human Language -> NLP system -> Machine readable represtation -> task / Decision
 
----
+---Combines 
+- AI
+- ML
+- DL
+- Linguistics
+- computer science
 
-# What is AI?
+Why is human language is difficult
+---------------------------------
+- problem 1 - Ambiguity, eg: I went to the bank (rever bank, financial)
+- problem 2- Context , 
+  eg : apple releaseed a new phone (apple company)
+        I ate an anpple (Apple friut)
+       Apple mening is only know to us by surronding context
+- Problem 3- Pronoun Resolution
+    eg: John gae sam his book
+        whose book? John's or same's
 
-Anything which mimics human intelligence is called **AI (Artificial Intelligence)**.
+- Problem 4 - Sacrcasm
+  - Great! Another two hours meeting. Word Greate is positive but overall meaning can be negavite
 
----
+- Problem 5 - Multiple Meanings
+    - I saw a abt, 
+      -  bat can be animal
+      -  bat can be sports equirment
 
-# What is Machine Learning?
-
-Machine Learning is used for **predictive analytics**.
-
-### Example
-
-Predicting crop yield using:
-
-- Humidity
-- Rainfall
-- Temperature
-- Number of phone calls
-
-```text
-Humidity + Rainfall + Temperature + No. of Phone Calls
-                         ↓
-                    Crop Yield
+- Problem 6 - Informal langauage
+   bro u comng tmrw?
 
 
-      
-  
+
+
+
