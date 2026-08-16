@@ -120,6 +120,50 @@ Unsupervised Learnin
   - Association Rules
   - Dimensionality Reduction
 
+-----------------------------------------------
+# What is Natural Language Processing
+
+Used by humans to communicate.
+
+**Example:**  
+Book me a flight for Delhi tomorrow.
+
+Humans understand:
+
+- Meaning
+- Context
+- Intentions
+- Emotions
+- Relationships
+
+NLP is a field of AI that enables computers to **process, analyze, understand, and generate human language**.
+
+---
+
+# What is AI?
+
+Anything which mimics human intelligence is called **AI (Artificial Intelligence)**.
+
+---
+
+# What is Machine Learning?
+
+Machine Learning is used for **predictive analytics**.
+
+### Example
+
+Predicting crop yield using:
+
+- Humidity
+- Rainfall
+- Temperature
+- Number of phone calls
+
+```text
+Humidity + Rainfall + Temperature + No. of Phone Calls
+                         ↓
+                    Crop Yield
+
 
       
   
