@@ -881,53 +881,501 @@ Possible meanings:
 
 # NLP Pipeline
 
-An **NLP Pipeline** is a sequence of steps used to process raw human language and convert it into a form that a machine can understand and analyze.
+An **NLP Pipeline** is a sequence of steps used to process raw human language and convert it into a form that a computer can understand, analyze, and use for a specific task.
 
-## Steps in NLP Pipeline
+---
 
-1. **Data Collection**
-   - Collect text from documents, websites, reviews, social media, etc.
+## 1. Data Collection
 
-2. **Text Cleaning**
-   - Remove unnecessary characters, HTML tags, extra spaces, URLs, etc.
+The first step is collecting text data from different sources.
 
-3. **Tokenization**
-   - Split text into smaller units called tokens.
-   - Example: `I love NLP` → `["I", "love", "NLP"]`
+### Examples
 
-4. **Text Normalization**
-   - Convert text into a consistent form.
-   - Lowercasing
-   - Stop-word removal
-   - Stemming
-   - Lemmatization
+- Documents
+- Emails
+- Websites
+- Social media
+- Reviews
+- Chat messages
+- News articles
 
-5. **Feature Extraction / Text Representation**
-   - Convert text into numerical form.
-   - Bag of Words (BoW)
-   - TF-IDF
-   - Word2Vec
-   - Embeddings
+### Example
 
-6. **Model Training**
-   - Train a Machine Learning or Deep Learning model using the processed data.
+> "The movie was AMAZING! I really enjoyed it."
 
-7. **Evaluation**
-   - Evaluate performance using metrics such as:
-     - Accuracy
-     - Precision
-     - Recall
-     - F1-score
+---
 
-8. **Prediction / Output**
-   - Use the trained model to produce the final result.
+## 2. Text Cleaning
 
-## NLP Pipeline Flow
+**Text cleaning** removes unnecessary or unwanted information from the text.
 
-Raw Text → Cleaning → Tokenization → Normalization → Feature Extraction → Model Training → Evaluation → Prediction
+Common operations include:
 
-## Modern NLP Pipeline
+- Removing HTML tags
+- Removing unnecessary punctuation
+- Removing extra spaces
+- Removing URLs
+- Removing special characters
+- Handling emojis when appropriate
 
-Raw Text → Tokenizer → Tokens → Embeddings → Transformer Model → Output
+### Example
+
+**Before:**
+
+```text
+"Hello!!! Visit https://example.com"
+```
+
+**After:**
+
+```text
+"Hello Visit"
+```
+
+> **Note:** Cleaning depends on the NLP task. For sentiment analysis, punctuation and emojis may contain useful information and should not always be removed.
+
+---
+
+## 3. Tokenization
+
+**Tokenization** divides text into smaller units called **tokens**.
+
+Tokens can be:
+
+- Words
+- Subwords
+- Sentences
+- Characters
+
+### Example
+
+**Input:**
+
+```text
+"I love NLP"
+```
+
+**Output:**
+
+```text
+["I", "love", "NLP"]
+```
+
+Modern transformer models commonly use **subword tokenization**.
+
+---
+
+## 4. Text Normalization
+
+**Text normalization** converts text into a more consistent format.
+
+It may include:
+
+### 4.1 Lowercasing
+
+```text
+"Natural Language" → "natural language"
+```
+
+### 4.2 Stop Word Removal
+
+Stop words are common words that may be removed in some traditional NLP applications.
+
+```text
+"The cat is on the table"
+        ↓
+"cat table"
+```
+
+Examples of stop words:
+
+- the
+- is
+- a
+- an
+- of
+
+### 4.3 Stemming
+
+**Stemming** reduces words to their approximate root or stem.
+
+```text
+playing → play
+played  → play
+studies → studi
+```
+
+### 4.4 Lemmatization
+
+**Lemmatization** converts words to their proper dictionary or base form.
+
+```text
+running → run
+mice    → mouse
+better  → good
+```
+
+> **Note:** Modern transformer-based NLP usually requires less manual normalization than traditional NLP systems.
+
+---
+
+## 5. Linguistic Analysis
+
+Depending on the application, additional linguistic analysis may be performed.
+
+### 5.1 Part-of-Speech (POS) Tagging
+
+**POS tagging** identifies the grammatical role of each word.
+
+### Example
+
+```text
+John eats apples.
+
+John   → Noun
+eats   → Verb
+apples → Noun
+```
+
+### 5.2 Named Entity Recognition (NER)
+
+**Named Entity Recognition** identifies important real-world entities in text.
+
+Common entity types include:
+
+- Person
+- Organization
+- Location
+- Date
+- Money
+
+### Example
+
+```text
+"Apple was founded by Steve Jobs."
+
+Apple      → Organization
+Steve Jobs → Person
+```
+
+### 5.3 Parsing
+
+**Parsing** determines the grammatical structure of a sentence and the relationships between its words.
+
+---
+
+## 6. Feature Extraction / Text Representation
+
+Computers cannot directly understand text. Therefore, text needs to be converted into a **numerical representation**.
+
+### 6.1 Bag of Words (BoW)
+
+**Bag of Words** represents text using the occurrence or frequency of words.
+
+### 6.2 TF-IDF
+
+**TF-IDF (Term Frequency-Inverse Document Frequency)** measures the importance of words within documents.
+
+```text
+Text
+  ↓
+TF-IDF
+  ↓
+Numerical Vector
+```
+
+### 6.3 Word Embeddings
+
+Word embeddings represent words using dense numerical vectors.
+
+Examples:
+
+- Word2Vec
+- GloVe
+- FastText
+
+### 6.4 Contextual Embeddings
+
+Modern transformer models generate word representations based on their context.
+
+Examples:
+
+- BERT
+- GPT
+- T5
+
+---
+
+## 7. Model Building
+
+After converting text into numerical representations, the data is provided to a **Machine Learning (ML)** or **Deep Learning (DL)** model.
+
+### Traditional Machine Learning Models
+
+- Naive Bayes
+- Logistic Regression
+- Support Vector Machine (SVM)
+- Random Forest
+
+### Deep Learning Models
+
+- RNN
+- LSTM
+- GRU
+- CNN
+
+### Modern NLP Models
+
+- Transformers
+- BERT
+- GPT
+- T5
+- Large Language Models (LLMs)
+
+---
+
+## 8. Model Training
+
+During **model training**, the model learns patterns and relationships from training data.
+
+### Example: Sentiment Analysis
+
+```text
+"This movie is excellent" → Positive
+"This movie is terrible"  → Negative
+```
+
+The model learns the relationship between the input text and its expected output.
+
+---
+
+## 9. Model Evaluation
+
+After training, the model is evaluated to determine how well it performs on unseen data.
+
+Common evaluation metrics include:
+
+- Accuracy
+- Precision
+- Recall
+- F1-score
+- BLEU
+- ROUGE
+- Perplexity
+
+The appropriate evaluation metric depends on the NLP task.
+
+For example:
+
+- **Accuracy, Precision, Recall, F1-score** → Classification
+- **BLEU** → Machine Translation
+- **ROUGE** → Text Summarization
+- **Perplexity** → Language Modeling
+
+---
+
+## 10. Prediction / Output
+
+Finally, the trained NLP system produces the required output.
+
+### Sentiment Analysis
+
+```text
+Input:
+"I really enjoyed this movie."
+
+        ↓
+
+    NLP Model
+
+        ↓
+
+Output:
+Positive
+```
+
+### Named Entity Recognition
+
+```text
+Input:
+"John works at Google."
+
+        ↓
+
+    NLP Model
+
+        ↓
+
+Output:
+John   → Person
+Google → Organization
+```
+
+### Machine Translation
+
+```text
+English
+   ↓
+NLP Model
+   ↓
+French
+```
+
+---
+
+# Traditional NLP Pipeline
+
+A traditional Machine Learning-based NLP pipeline commonly looks like:
+
+```text
+Raw Text
+   ↓
+Text Cleaning
+   ↓
+Tokenization
+   ↓
+Normalization
+   ↓
+Stop Word Removal
+   ↓
+Stemming / Lemmatization
+   ↓
+Feature Extraction
+   ↓
+Machine Learning Model
+   ↓
+Evaluation
+   ↓
+Prediction
+```
+
+---
+
+# Modern NLP Pipeline
+
+Transformer-based NLP usually requires less manual preprocessing.
+
+```text
+Raw Text
+   ↓
+Tokenizer
+   ↓
+Tokens / Token IDs
+   ↓
+Embeddings
+   ↓
+Transformer Model
+   ↓
+Task Output
+```
+
+### Example
+
+```text
+"I love this product!"
+        ↓
+   Tokenization
+        ↓
+ Transformer Model
+        ↓
+Sentiment Classifier
+        ↓
+     Positive
+```
+
+---
+
+# NLP Pipeline Example
+
+Consider a **spam email detection system**.
+
+## Step 1: Input
+
+```text
+"Congratulations! You have won a free prize."
+```
+
+## Step 2: Preprocessing
+
+Clean and tokenize the text.
+
+```text
+["congratulations", "you", "have", "won", "a", "free", "prize"]
+```
+
+## Step 3: Text Representation
+
+Convert the text into numerical features.
+
+```text
+Text
+  ↓
+TF-IDF / Embeddings
+  ↓
+Numerical Features
+```
+
+## Step 4: Model
+
+Pass the numerical features to a classification model.
+
+```text
+Text Features
+     ↓
+Classifier
+     ↓
+Prediction
+```
+
+## Step 5: Output
+
+```text
+Spam
+```
+
+---
+
+# Summary
+
+| Stage | Purpose |
+|---|---|
+| **Data Collection** | Collect language data |
+| **Text Cleaning** | Remove unwanted information |
+| **Tokenization** | Split text into tokens |
+| **Normalization** | Standardize text |
+| **Linguistic Analysis** | Identify grammatical and semantic information |
+| **Text Representation** | Convert text into numerical form |
+| **Model Building** | Select an NLP/ML model |
+| **Model Training** | Learn patterns from training data |
+| **Model Evaluation** | Measure model performance |
+| **Prediction** | Produce the final output |
+
+---
+
+# Easy Way to Remember
+
+```text
+Collect
+   ↓
+Clean
+   ↓
+Tokenize
+   ↓
+Normalize
+   ↓
+Represent
+   ↓
+Train
+   ↓
+Evaluate
+   ↓
+Predict
+```
+
+---
+
+## In Short
+
+> An **NLP Pipeline** converts **raw human language → processed text → numerical representation → NLP model → useful output**.
 
 
